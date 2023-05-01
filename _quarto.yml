@@ -1,0 +1,48 @@
+project:
+  type: book
+
+book:
+  title: "on war"
+  subtitle: "a mathematical and computational perspective"
+  favicon: "logo/favicon-32x32.png"
+  author: "Mario De Toma"
+  date: "May 15, 2023"
+  abstract: "On War short essay suggests how to think about conflicts using mathematical modeling by taking advantage of the foundations of game theory, Markovian processes and system dynamics."
+  site-url: "https://mdt-ds.github.io/on_war/"
+  
+  navbar:
+    pinned: false
+    collapse: false
+    right: 
+      - icon: envelope
+        url: "mailto:mariodetoma.dsp@gmail.com"
+      - icon: twitter 
+        href: https://twitter.com/mariodetoma
+      - icon: github
+        href: https://github.com/mdt-ds
+      
+  
+  sidebar:
+    collapse-level: 3
+    pinned: true
+    logo: logo/mdt_logo.png
+  
+  page-footer:
+    left: |
+      Copyright 2023, Mario De Toma
+    right: |
+      Powered by [Quarto](https://quarto.org/) <?quarto.version?>
+    background: "#d5e8d4"
+  
+  chapters:
+    - index.qmd
+
+format:
+  html:
+    theme: sandstone
+    author-meta: "Mario De Toma"
+    
+filters:
+  - quarto_version.lua
+
+editor: source
