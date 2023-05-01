@@ -84,4 +84,4 @@ This short essay is licensed to you under [Creative Commons Attribution-NonComme
 For attribution, please cite this work as:
 
 > Mario De Toma, 2023. "On War: a mathematical and computational perspective"\
-June 30, 2023.  <https://mdt-ds.github.io/on_war>
+May 15, 2023.  <https://mdt-ds.github.io/on_war>
