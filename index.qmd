@@ -20,8 +20,8 @@ The need to think about war is evidenced in the history of world religion, philo
 Carl Von Clausewitz's **On War** (Vom Kriege 1832) is undoubtedly the most influential Western treatise on the subject of war.
 Von Clausewitz denies that war is a purely military phenomenon and his famous axiom "*war is the continuation of politics by other means*" has conditioned the thinking of generations of generals and politicians providing the tools to understand the phenomenon of war. For him war is "*an act of violence to impose our will on the adversary*". War is "*a game of interactions*" between uncertainty, friction, randomness. It is an act of political intelligence, calculation of probabilities and willingness to take risks.
 
-Lev Nikolayevich Tolstoj's novel War and Peace (1829) contains digressions on the philosophy of warfare that directly influenced Gandhi's Hinduism-centered philosophy of nonviolent resistance. The second epilogue of the novel is then a real essay of critical philosophy of history in which Tolstoy explores the question of the relationship between 'necessity' and 'freedom' in the historical actions of men. Tolstoj condemns historians who believe that "peoples are led by individuals" and that "there is a certain goal towards which peoples and humanity are moving."\
-Tolstoj briefly explains his ethical position saying: "*War is so unjust and ugly that those who fight in it have to try to drown out the voice of conscience within themselves.*" 
+Lev Nikolayevich Tolstoy's novel War and Peace (1829) contains digressions on the philosophy of warfare that directly influenced Gandhi's Hinduism-centered philosophy of nonviolent resistance. The second epilogue of the novel is then a real essay of critical philosophy of history in which Tolstoy explores the question of the relationship between 'necessity' and 'freedom' in the historical actions of men. Tolstoy condemns historians who believe that "peoples are led by individuals" and that "there is a certain goal towards which peoples and humanity are moving."\
+Tolstoy briefly explains his ethical position saying: "*War is so unjust and ugly that those who fight in it have to try to drown out the voice of conscience within themselves.*" 
 
 In Eastern culture, Sun Tzu's **The Art of War** (roughly 5th century BC) is the most influential essay. It is an exhaustive treatise about warfare strategies and tactics articulated in 13 chapters: laying plans, waging war, attack by stratagem, tactical disposition, use of energy, weak point and strong, maneuvering an army, variation of tactics, the army on the march, classification of terrain, the nine situations, attack by fire, use of spies.\
 According to Sun Tzu "*The art of war is of vital importance to the State.It is a matter of life and death, a road either to safety or to ruin. Hence it is a subject of inquiry which can on no account be neglected.*"
@@ -40,7 +40,7 @@ The essay is articulated according to the following mind map.\
 The first part, *War Trends*, applies exploratory data analysis to public data about wars in history and country military spending in contemporary age. 
 
 The second part, *Games of War*, analyzes the strategic interactions between enemies through the framework of game theory. 
-Four strategic games are therefore studied: war or peace; generals deploy their armies; cold war and rush to clash.
+Four strategic games are therefore studied: 'war or peace'; 'generals deploy their armies'; 'cold war' and 'a rush towards clash'.
 
 The third part uses Markov processes to analyze the probabilities related to war with the following models:\
 
