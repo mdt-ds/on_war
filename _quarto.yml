@@ -10,7 +10,7 @@ book:
   date: "May 15, 2023"
   abstract: "On War short essay suggests how to think about conflicts using mathematical modeling by taking advantage of the foundations of game theory, Markovian processes and system dynamics."
   site-url: "https://mdt-ds.github.io/on_war/"
-  google-analytics: ""
+  google-analytics: "G-BRLVLRZ5S9"
   
   navbar:
     pinned: false
