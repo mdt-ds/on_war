@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mdt-ds.github.io/on_war/index.html</loc>
-    <lastmod>2023-05-06T13:52:16.338Z</lastmod>
+    <lastmod>2023-05-07T09:24:44.920Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mdt-ds.github.io/on_war/war_trends.html</loc>
+    <lastmod>2023-05-07T09:24:52.561Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mdt-ds.github.io/on_war/war_games.html</loc>
+    <lastmod>2023-05-07T09:24:55.885Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mdt-ds.github.io/on_war/war_markov.html</loc>
+    <lastmod>2023-05-07T09:24:57.872Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mdt-ds.github.io/on_war/war_dynamics.html</loc>
+    <lastmod>2023-05-07T09:24:59.956Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mdt-ds.github.io/on_war/conclusions.html</loc>
+    <lastmod>2023-05-07T09:25:02.144Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mdt-ds.github.io/on_war/references.html</loc>
+    <lastmod>2023-05-07T09:25:04.552Z</lastmod>
   </url>
 </urlset>
