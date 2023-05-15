@@ -21,6 +21,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -71,6 +90,7 @@ gtag('js', new Date());
 gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -170,7 +190,16 @@ gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#dynamical-system" id="toc-dynamical-system" class="nav-link active" data-scroll-target="#dynamical-system"><span class="toc-section-number">4.1</span>  dynamical system</a></li>
+  <li><a href="#arms-race-model" id="toc-arms-race-model" class="nav-link" data-scroll-target="#arms-race-model"><span class="toc-section-number">4.2</span>  arms race model</a></li>
+  <li><a href="#combat-model" id="toc-combat-model" class="nav-link" data-scroll-target="#combat-model"><span class="toc-section-number">4.3</span>  combat model</a></li>
+  <li><a href="#key-takeways" id="toc-key-takeways" class="nav-link" data-scroll-target="#key-takeways"><span class="toc-section-number">4.4</span>  key takeways</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -192,8 +221,486 @@ gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 
 </header>
 
+<blockquote class="blockquote">
+<p>“War does not determine who is right only who is left”<br>
+Bertrand Russell</p>
+</blockquote>
+<p>War has so far been analyzed in terms of strategy using game theory and in terms of probability using Markov chains. This chapter tries to begin to understand some causal mechanisms of war using the most powerful mathematical tool: differential equations.</p>
+<p>Benoit Mandelbrot said: “<em>If you assume continuity, you can open the well-stocked mathematical toolkit of continuous functions and differential equations, the saws and hammers of engineering and physics for the past two centuries (and the foreseeable future).</em>” Alan Turing puts the same idea more succinctly: “<em>Science is a differential equation</em>”.</p>
+<p>Differential equations describe the rate of change of a system with respect to some independent variable such as time in the specific case of dynamical systems. In other words they are statements about the instantaneous rate of change, or derivative, of functions.</p>
+<p>Differential Equations can describe how populations change, how heat moves, how springs vibrate, how radioactive material decays and much more.</p>
+<p>Later in this chapter, after a brief introduction to dynamical systems, adaptations of Richardson’s arms race models and Lanchester’s combat models provide an explanation of the relationship between identified causal factors and the outcomes of the arms race and of combat over time.</p>
+<section id="dynamical-system" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="dynamical-system"><span class="header-section-number">4.1</span> dynamical system</h2>
+<p>A dynamical system is a model describing the temporal evolution of a system, it is a mean of describing how one state develops into another state over the course of time.</p>
+<p>As this chapter proceeds, dynamic models will be represented both in their mathematical form as systems of differential equations and as stock and flow diagrams.</p>
+<p>The mathematical definition of a dynamical system is as follow: <span class="math display">\[\frac{d}{dt}x = f(x,t,u;\beta)\]</span> where:</p>
+<ul>
+<li><p>x, called state vector, contains the minimum set of variables needed to describe the system under study;</p></li>
+<li><p>f, the dynamics, is a set of functions each one representing the derivative with respect to time of the corresponding state variable in the state vector;</p></li>
+<li><p>u, control or actuation, are variables influencing the state of the system that one have control over;</p></li>
+<li><p><span class="math inline">\(\beta\)</span>, are a set of parameters for which the analysis is useful.</p></li>
+</ul>
+<p>The proceeding of this chapter considers only linear systems, in the state variables, and autonomous ones, i.e.&nbsp;in which time <span class="math inline">\(t\)</span> is not present in the dynamics.</p>
+<p>The solution of a dynamical system is a set function of time for each state variable: <span class="math inline">\(x(t)\)</span>.</p>
+<p>In order to formulate a dynamical system, the use of the diagram is very helpful to clarify the structure of the system and to formalize the equations that rule the evolution over time.</p>
+<p>The diagramming methodology of stocks and flow is used for this purpose in the chapter proceedings. Note that the graphic symbols differ from those reported in the literature.</p>
+<p>These diagrams consist of:<br>
+</p>
+<ul>
+<li><p>state (or stock) variables, displayed as rectangles;<br>
+</p></li>
+<li><p>flow variables, displayed as thick arrows with a circle in the middle;<br>
+</p></li>
+<li><p>control (or auxiliary) variables, displayed with no symbol;<br>
+</p></li>
+<li><p>parameters and constants, with no symbol;<br>
+</p></li>
+<li><p>causal links between variables, displayed as thin arrows;<br>
+</p></li>
+<li><p>source and sink, displayed with oval, representing the boundary of the modeled system.</p></li>
+</ul>
+<p>Each stock is thought of as the accumulation of each state variable in the system. It is thus said that the system has memory (or history).</p>
+<p>There are two types of flows: inflows and outflows. Inflows are perceived as the rate at which the state variable (the flow is going to) is increasing over time. Similarly, the outflow is the rate at which the stock (the flow is going out from) is decreasing.</p>
+<p>State and flow variables differ in their units of measurement. A stock is measured at one specific time, and represents a quantity existing at that point in time, which may have accumulated in the past. A flow variable is measured over an interval of time. Therefore, a flow would be measured per unit of time. Flow is roughly analogous to rate or speed in this sense.</p>
+<p>State variables can only change due to flows into and out of them. The net flow is eventually the outflow subtracted from the inflow.</p>
+<p>In other words the net flow is therefore the derivative of the state variable with respect to time. <span class="math display">\[\frac{d\ state\_variable}{dt} = inflow(t) - outflow(t)\]</span></p>
+<p>It is now easy to understand that a state variable is the integral, the inverse operation of the derivative, of the net flow added to the initial value of the state variable or stock.</p>
+<p><span class="math display">\[state\_variable(t) = \int_{t_0}^t [inflow(s) - outflow(s)] ds + state\_variable(t_0)\]</span></p>
+<p>All said can be condensed in this simple stocks &amp; flows diagram.</p>
+<div id="fig-netflow" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="stock_flow/net_flow.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.1: netflow</figcaption><p></p>
+</figure>
+</div>
+<p>The solution methods of a dynamical system are not in the scope of this short essay.<br>
+</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+exploring further
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For an in-depth introduction to differential equations, one can refer to <span class="citation" data-cites="boyce_diprima_meade2017">Boyce, Diprima, and Meade (<a href="references.html#ref-boyce_diprima_meade2017" role="doc-biblioref">2017</a>)</span>. If the reader is more generally interested in mathematical modeling he can refer to <span class="citation" data-cites="burghes_borrie1981">Burghes and Borrie (<a href="references.html#ref-burghes_borrie1981" role="doc-biblioref">1981</a>)</span> or to <span class="citation" data-cites="bender1978">Bender (<a href="references.html#ref-bender1978" role="doc-biblioref">1978</a>)</span>. Numerical methods are extensively covered by <span class="citation" data-cites="epperson2013">Epperson (<a href="references.html#ref-epperson2013" role="doc-biblioref">2013</a>)</span>.</p>
+</div>
+</div>
+</section>
+<section id="arms-race-model" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="arms-race-model"><span class="header-section-number">4.2</span> arms race model</h2>
+<p>In the context of this section, the arms race is defined as a competition between two nations or alliances for military superiority through the development of new and more powerful weapons and the strengthening of armed forces.</p>
+<p>A causal arms race model was originally developed by Lewis Fry Richardson after serving for the French medical corps in World War I. His model considers three main causes for which nations increase or decrease their armaments.</p>
+<p>The three hypothesized causal relationships included in the model adapted for this essay are:<br>
+</p>
+<ul>
+<li><p>a nation makes changes to its own levels of arms spending proportional to that of the competing nation out of fear of military insecurity;<br>
+</p></li>
+<li><p>arms spending is limited by the country’s overall economy and also by its political system. This constraint is proportional to the size of one’s current military spending;<br>
+</p></li>
+<li><p>hostilities, ambitions, and grievances drive nations to arm at a constant rate also independently from direct military threat from another nation.</p></li>
+</ul>
+<p>The following stock and flow diagram shows graphically the model definition. The thick arrows represents the flows. Each thin arrow show a causal relationship.</p>
+<div id="fig-arms_race" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="stock_flow/arms_race.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.2: arms race stock &amp; flow</figcaption><p></p>
+</figure>
+</div>
+<p>The state variables or stocks, displayed as rectangles, represent the military spending of both nations in the competing arms race.</p>
+<p>The system boundaries, shown as ovals, represent where spending power comes from, the sources, and where military spending savings, the sinks, are allocated. In the specific case, therefore, the model foresees interactions both in input and in output only with the global expenditure of each nation.</p>
+<p>The inflow rate for both nations is governed by:<br>
+</p>
+<ul>
+<li><p>a positive factor proportional to the arms expenditure of the competing nation representing the fear response to a increased military power of a competing nation;<br>
+</p></li>
+<li><p>a positive constant factor that indicates the nation hostility and grievance towards other countries.</p></li>
+</ul>
+<p>The outflow rate for both nations is governed by:<br>
+</p>
+<ul>
+<li>a negative factor proportional to its own expenditure representing the internal economical and political constraints.<br>
+</li>
+</ul>
+<p>From the stock and flow diagram is relatively easy to write the differential equations that rule the arms race phenomenon structured as per the model diagram assuming that each causal effect is additive.</p>
+<p><span class="math display">\[ \frac{d\_milexA}{dt} = fa \cdot milexB - la \cdot milexA + ga \]</span></p>
+<p><span class="math display">\[ \frac{d\_milexB}{dt} = fb \cdot milexA - lb \cdot milexB + gb \]</span></p>
+<p>The instantaneous rate of change of each nation’s military expenditures is given by:<br>
+</p>
+<ul>
+<li><p>a positive factor proportional to the dimension of the competing nation’s military expenditure. Whose proportionality constant <span class="math inline">\(fa\)</span> or <span class="math inline">\(fb\)</span> represents the nation’s fear of its opponent;<br>
+</p></li>
+<li><p>a negative factor proportional to one’s own expenditures with the constant <span class="math inline">\(la\)</span> or <span class="math inline">\(lb\)</span> indicating the limiting strength of the internal conditions in the country;<br>
+</p></li>
+<li><p>a constant positive rate <span class="math inline">\(ga\)</span> or <span class="math inline">\(gb\)</span> which represents the resentment and belligerence present in the nation itself.</p></li>
+</ul>
+<div class="cell">
+
+</div>
+<p>In order to explain the behavior of the arms race phenomenon, four scenarios have been considered:<br>
+</p>
+<ul>
+<li><p>both nations react out of fear to the other nation’s arming effort;<br>
+</p></li>
+<li><p>both nations have strong economical and/or internal politics restrains;<br>
+</p></li>
+<li><p>one nation is hostile towards the other that reacts out of fear;<br>
+</p></li>
+<li><p>only one nation is subject to strong internal constraints.</p></li>
+</ul>
+<p>In the table below the model parameters for each scenario are displayed.</p>
+<table class="table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">parameter</th>
+<th style="text-align: center;">both react by fear</th>
+<th style="text-align: center;">both economical restrains</th>
+<th style="text-align: center;">hostility balanced by fear reaction</th>
+<th style="text-align: center;">one nations with economical restrains</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">reaction by fear A</td>
+<td style="text-align: center;">4.5</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">restrain A</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">3.5</td>
+<td style="text-align: center;">1.0</td>
+<td style="text-align: center;">1.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">grievance A</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">5.5</td>
+<td style="text-align: center;">0.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">reaction by fear B</td>
+<td style="text-align: center;">3.5</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: center;">4.5</td>
+<td style="text-align: center;">2.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">restrain B</td>
+<td style="text-align: center;">1.0</td>
+<td style="text-align: center;">4.5</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">4.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">grievance B</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">1.0</td>
+<td style="text-align: center;">1.5</td>
+</tr>
+</tbody>
+</table>
+<p>To explain the behavior of the arms race phenomenon in each scenario, this chapter proceeds to a phase plane analysis.</p>
+<p>The phase plane is a graph that allows an analysis of the infinite solutions of a dynamic system by representing on the plane of the state variables, <span class="math inline">\(milexA\)</span> and <span class="math inline">\(milexB\)</span>, both the vector field, i.e.&nbsp;the derivatives at each point of the plane, and each nullcline, the line for which the derivative of a state variable with respect to time is 0.</p>
+<p>Specifically the arrows of the vector field indicate the direction in which the system evolve over time. A specific path of the system defined by the state variables and governed by the specified dynamics that follows the vector field from a specific starting point in the phase plane is called a trajectory. A trajectory is a specific solution of the dynamical system given a initial condition: an initial state of the system.</p>
+<p>To facilitate the visualization, some significant trajectories relating to different initial conditions are plotted in the phase plane.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/arms race phase analysis-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/arms race phase analysis-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/arms race phase analysis-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/arms race phase analysis-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The first quadrant phase plane, top left, represents a situation where both nations react strongly by fear but have no significant economic restrictions or hostility toward the other nation. The vector field shows that:</p>
+<ul>
+<li><p>in the region where military expenditure for nation B is higher than one of nation A the arrows point towards an increase of military expenditure for nation A, from left to right;</p></li>
+<li><p>in the region where military expenditure for nation A is higher than one of nation B the arrows point towards an increase of military expenditure for nation B, from bottom up;</p></li>
+<li><p>in the region where military expenditure for nation B and nation A are comparable the arrows point towards an increase of both military expenditure, towards upper right of the plane.</p></li>
+</ul>
+<p>The arms race in this case leads each nation to a continuous growth of its military expenditures. Regardless of where each nation started in the long run they will have a high similar amount of expenses in military defense.</p>
+<p>The phase plane in the upper right quadrant instead refers to a situation where both nations are in dire economic straits. In this scenario the vector field arrows bend towards the lower left corner of the phase plane, towards both nations’ military spending reduction. Thus, in the long run, both nations will end up with zero military spending.</p>
+<p>The phase plane in the lower left quadrant is very similar to that in the upper left but is produced by different causes. In this scenario, nation A’s resentment of nation B is balanced by nation B’s fearful reaction of armed conflict. For this reason the arrows of the vector field in the region with higher expenditure for A goes form bottom to top while in the region with higher expenditure for B bend slightly down but then goes up. Since the reaction out of fear has a growth proportional to the spending of the competing nation while that out of resentment is a constant growth, the evolution of military spending over time will lead nation B to spend more than nation A.</p>
+<p>The last phase plane, bottom right, shows that in case of only one nation has significant economic restriction in the long run the the military expenditure of both nations will be reduced. The vector field is similar to that in the graph directly above but the upper region where the arrows are directed from top left to bottom right is much larger. Also notice how the area where the arrows point directly at zero narrows. Since country B has more restrictions, its decline in military spending is faster and sharper where country A’s spending is slightly higher.</p>
+<p>The analysis of the model performed in the time domain for some specific initial spending is displayed in the following four graphs.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/arms race solution-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/arms race solution-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/arms race solution-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/arms race solution-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The top left graph shows the exponential growth of each nation’s military spending when fear response is the primary factor for each nation. This tendency is due to the fact that in this case the predominant cause is the fear reaction of a possible armed conflict which has an effect proportional to the level of expenditure of the opposing nation.</p>
+<p>The graph at the top right instead shows the exponential decay of each nation’s military expenditures due to strong internal constraints. Since the effect is proportional to the expenditure level by each nation, the nation with the least level of expenditures at an early stage shows an armaments growth due to the contribution of the other two causes identified by the model: the fear reaction and preconceived hostility.</p>
+<p>The graph on the bottom left instead shows the growth of military expenditures determined by a nation that is strongly hostile but which does not let itself be guided by fear which is opposed by a nation guided by a reaction of fear towards the possible armed conflict. Since the hostility effect modeled is one of steady growth, in the long run the nation reacting primarily out of fear, an effect modeled as proportional to the enemy nation’s spending, will spend more on armaments.</p>
+<p>The bottom right last graph shows that the restrictions imposed by the economy on a single nation contribute to a slow dynamic of expenditures decrease under conditions of low hostility and normal reaction out of fear of the opposing nation. In the long run the nation with a stronger economy will lead the race without incurring a huge expense.</p>
+</section>
+<section id="combat-model" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="combat-model"><span class="header-section-number">4.3</span> combat model</h2>
+<p>The Lanchester combat model points to the strength of armies as the root cause of the outcome of a battle or war.</p>
+<p>Losses in an army for this model are due:<br>
+</p>
+<ul>
+<li><p>mainly to the effectiveness, due to preparation, armament and equipment, and to numeric consistency of the enemy army;<br>
+</p></li>
+<li><p>but also to the operational conditions of the conflict, including army morale which may facilitate desertions and unenforced surrenders and logistics capabilities which may also lead to casualties from disease and excessive fatigue.</p></li>
+</ul>
+<p>Later in the presentation of the model, as a further element affecting the result of the combat, the possibility of receiving reinforcements from military reserves was taken into consideration.</p>
+<p>The following stock and flow diagram is a schematic representation of the combat model freely adapted for this essay. The diagram maps each causal hypothesis above into specific symbols.</p>
+<div id="fig-combat_model" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="stock_flow/combat_model.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4.3: combat model stock &amp; flow</figcaption><p></p>
+</figure>
+</div>
+<p>The two stocks, displayed as rectangles, represent the consistency or rather the strengths of the opposing armies.<br>
+The boundaries to the model, represented as ovals, are in input the reserve military strength of each army, i.e.&nbsp;the source of reinforcements, and in output the losses suffered by each army, the sink.<br>
+The outflow for each army is governed by a loss rate composed of a factor proportional to the size of the enemy army and a factor proportional to the size of one’s own army.<br>
+The proportionality parameter for the first factor indicates the combat effectiveness of the enemy army and includes considerations such as equipment, weapons and training. The higher this parameter, the more losses one army can inflict on the other.<br>
+The proportionality parameter for the second factor indicates the operational condition of the army and includes considerations such as morale, logistics, supply. The lower this parameter, the better the operating conditions of the army at the front, the less losses the army itself will suffer from operational causes.</p>
+<p>The inflow is an input function of time representing the possibility of having reinforcements.</p>
+<p>The following differential equations are the translation in mathematics of the stock and flow diagram above.</p>
+<p><span class="math display">\[ \frac{d\ armyA}{dt} = + Areinforce(t) - Befficacy \cdot armyB -Aops \cdot armyA\]</span> <span class="math display">\[ \frac{d\ armyB}{dt} = + Breinforce(t) - Aefficacy \cdot armyA -Bops \cdot armyB\]</span></p>
+<p>The instantaneous rate of change of an army with respect to time is given by:<br>
+</p>
+<ul>
+<li><p>a function over time representing the arrival of reinforcements, with the plus sign as it is the inflow;<br>
+</p></li>
+<li><p>the factor representing the losses inflicted by the enemy, with a minus sign as it is a component of the rate of outflow;<br>
+</p></li>
+<li><p>the factor representing the losses due to operational reasons, also in the outflow rate.</p></li>
+</ul>
+<div class="cell">
+
+</div>
+<p>In order to better understand the combat model, two different situations has been simulated. The situation called <em>army B strongest</em> simulates army B is better equipped and trained and it is subject to minor operational loss not considering its initial consistency. The situation called <em>army A strongest</em> on the contrary foresees army A with stronger parameters.</p>
+<p>In the table below the model parameters for each situation are displayed.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">parameter</th>
+<th style="text-align: center;">army B strongest</th>
+<th style="text-align: center;">army A strongest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">B efficacy</td>
+<td style="text-align: center;">0.05</td>
+<td style="text-align: center;">0.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A operational conditions</td>
+<td style="text-align: center;">0.001</td>
+<td style="text-align: center;">0.0008</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A effecacy</td>
+<td style="text-align: center;">0.025</td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B operational conditions</td>
+<td style="text-align: center;">0.0007</td>
+<td style="text-align: center;">0.002</td>
+</tr>
+</tbody>
+</table>
+<p>Initially the two models have been studied without the possibility of having reinforcement, without the inflow.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/combat phase analysis-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/combat phase analysis-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The phase plane graphs of the two scenarios show how the trajectory of the war progress strongly depends on the initial army levels. When Army B is better trained, equipped, and determined, Army A can only defeat the enemy if the initial army size is larger. The same is true in reversed positions when Army A is better equipped, trained, and determined. In fact, in the first case, in the left phase plane, the area of the vector field where the arrows point to the left, towards the zeroing of Army A’s strength, is greater, while in the right phase plane, the area where the arrows point down, towards Army B’s strength at zero, is greater.</p>
+<p>In the time domain the two models analyzed in the phase plane have been solved for specific initial conditions.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/combat model solution-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/combat model solution-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>In the first scenario with Army B better equipped and prepared, the initial level of Army A is fixed at 1200 units while Army B has 1000 units. In 35 time units, days or hours depending on the analysis setting, Army A is wiped out despite starting with 200 more units because a better equipped, better prepared and more determined army can overcome a larger army.</p>
+<p>The second scenario instead shows that the numerical strength of the army defines the outcome of the war when the numerical gap of the army is too significant. Army A has 900 units while Army B has 1200 units. The difference in preparation, equipment and determination does not compensate for the gap in strength. Thus the overall level of Army B remains higher than Army B.</p>
+<p>Finally, the inflow part of the model, the arrival of reinforcements, is added not as a continuous function of time but, for simplicity, as discrete events at certain specific times.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/combat model + reinforcemets solution-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_dynamics_files/figure-html/combat model + reinforcemets solution-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>In the first scenario, army B strongest and same initial conditions as in above model, the reinforcements for army A arrive in 5 consecutive times, from time 23, for a total of 340 units. But the mobilization of the reserves does not change the final outcome even if for a certain moment the forces in the field are again in favor of Army A.</p>
+<p>In the second scenario, army A strongest and same initial consistency of the armies, the arrival of reinforcements for army A is concentrated in one moment, time 18, with 300 more units. In this case, being Army A better equipped, better trained and more determined, the arrival of reinforcements reverses the outcome of the war by changing the proportion of forces in the field.</p>
+</section>
+<section id="key-takeways" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="key-takeways"><span class="header-section-number">4.4</span> key takeways</h2>
+<p>Using mathematical modeling with differential equations, it is possible to analyze the causal relationship and understand the reasons that determine a specific outcome over time.</p>
+<p>The two models presented above are adapted from the literature and are simple enough to be almost self-explanatory.</p>
+<p>Despite the very strong simplifications of these two models, they can be used to obtain useful ideas for developing strategies and tactics.</p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+computation with R
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The solution of differential equations in the chapter were computed using numerical methods implemented in the <em>deSolve</em> and <em>PhaseR</em> R packages respectively by <span class="citation" data-cites="soetaert2010">Karline Soetaert, Thomas Petzoldt, and R. Woodrow Setzer (<a href="references.html#ref-soetaert2010" role="doc-biblioref">2010</a>)</span> and by <span class="citation" data-cites="grayling2014">Grayling (<a href="references.html#ref-grayling2014" role="doc-biblioref">2014</a>)</span>.</p>
+<p>The other R packages used in this chapter are:<br>
+</p>
+<ul>
+<li><p><em>tibble</em> by <span class="citation" data-cites="tibble">Müller and Wickham (<a href="references.html#ref-tibble" role="doc-biblioref">2023</a>)</span>, <em>dplyr</em> by <span class="citation" data-cites="dplyr">Wickham et al. (<a href="references.html#ref-dplyr" role="doc-biblioref">2023</a>)</span> and <em>tidyr</em> by <span class="citation" data-cites="tidyr">Wickham, Vaughan, and Girlich (<a href="references.html#ref-tidyr" role="doc-biblioref">2023</a>)</span> for data manipulation;</p></li>
+<li><p><em>ggplot2</em> by Hadley <span class="citation" data-cites="wickham2016">Wickham (<a href="references.html#ref-wickham2016" role="doc-biblioref">2016</a>)</span> and <em>ggthemes</em> by <span class="citation" data-cites="ggthemes">Arnold (<a href="references.html#ref-ggthemes" role="doc-biblioref">2021</a>)</span> for plotting the time evolution of the probabilities.</p></li>
+</ul>
+</div>
+</div>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-ggthemes" class="csl-entry" role="doc-biblioentry">
+Arnold, Jeffrey B. 2021. <em>Ggthemes: Extra Themes, Scales and Geoms for ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggthemes">https://CRAN.R-project.org/package=ggthemes</a>.
+</div>
+<div id="ref-bender1978" class="csl-entry" role="doc-biblioentry">
+Bender, Edward A. 1978. <em>An Introduction to Mathematical Modeling</em>. John Wiley &amp; Sons, Inc.
+</div>
+<div id="ref-boyce_diprima_meade2017" class="csl-entry" role="doc-biblioentry">
+Boyce, William E., Richard C. Diprima, and Douglas B. Meade. 2017. <em>Elementary Differential Equations and Boundary Value Problems</em>. John Wiley &amp; Sons, Inc.
+</div>
+<div id="ref-burghes_borrie1981" class="csl-entry" role="doc-biblioentry">
+Burghes, David, and Morag Borrie. 1981. <em>Modelling with Differential Equations</em>. Ellis Horwood Limited.
+</div>
+<div id="ref-epperson2013" class="csl-entry" role="doc-biblioentry">
+Epperson, James. 2013. <em>An Introduction to Numerical Methods and Analysis</em>. John Wiley &amp; Sons, Inc.
+</div>
+<div id="ref-grayling2014" class="csl-entry" role="doc-biblioentry">
+Grayling, Michael J. 2014. <span>“<span class="nocase">phaseR: An R Package for Phase Plane Analysis of Autonomous ODE Systems</span>.”</span> <em>The R Journal</em> 6 (2): 43–51. <a href="https://doi.org/10.32614/RJ-2014-023">https://doi.org/10.32614/RJ-2014-023</a>.
+</div>
+<div id="ref-soetaert2010" class="csl-entry" role="doc-biblioentry">
+Karline Soetaert, Thomas Petzoldt, and R. Woodrow Setzer. 2010. <span>“Solving Differential Equations in <span>R</span>: Package de<span>S</span>olve.”</span> <em>Journal of Statistical Software</em> 33 (9): 1–25. <a href="https://doi.org/10.18637/jss.v033.i09">https://doi.org/10.18637/jss.v033.i09</a>.
+</div>
+<div id="ref-tibble" class="csl-entry" role="doc-biblioentry">
+Müller, Kirill, and Hadley Wickham. 2023. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble">https://CRAN.R-project.org/package=tibble</a>.
+</div>
+<div id="ref-wickham2016" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-dplyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+</div>
+<div id="ref-tidyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Davis Vaughan, and Maximilian Girlich. 2023. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

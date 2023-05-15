@@ -45,6 +45,8 @@ book:
     - conclusions.qmd
     - references.qmd
 
+bibliography: references.bib
+
 format:
   html:
     theme: sandstone

@@ -1,1 +1,54 @@
 # Conclusions
+> “*If everyone fought for their own convictions there would be no war.*”\
+Lev Tolstoy, War and Peace
+
+## summary
+
+In the previous chapters some analyzes and some mathematical models applied to the theme of war have been presented without any claim to exhaustiveness.
+
+However, the aspects that according to the author are most relevant in a mathematical approach to reasoning about war have been mentioned.
+
+Exploratory data analysis helps develop insights and adhere to the evidence of facts and data about war and about arms race.
+
+The study of strategic interactions using game theory allows for the rational evaluation of decision-making processes in relation to warfare.
+
+Applying probabilistic modeling makes it possible to deduce the most probable outcome based on the decisions taken and therefore to direct one's strategic plans accordingly.
+
+The modeling of dynamic systems with differential equations allows reasoning on the causal relationships that determine a certain evolution of war over time.
+
+All these four lines of analysis together are the basis for a modern reasoning about war.
+
+## a bit of controversy
+Mathematics is a very powerful language and it is universal. Mathematics can be used to describe and reveal new trends, to analyze and predict the evolution of real-life phenomena, to explain and simulate the course of events. This is true, as has been demonstrated in the preceding paragraphs of this short essay, even in matters of war.
+
+Mathematical models provide structure and formalization to theory and reasoning thus responding to Forrester's strong epistemological objection: "*without an organizational structure, knowledge is a mere collection of conflicting observations, practices and incidents*" (System Dynamics Society 2017).
+
+Furthermore, mathematical models are humble and honest things that state about themselves the assumptions under which they are valid and their limitations.\
+But in the hands of those untrained in mathematical modeling, the risk of misunderstandings is very high. One can extrapolate conclusions into domains where the model is not valid, or one can conclude something without testing the assumptions of the model.
+
+Plato, in the seventh chapter of the Republic, states that the warrior needs "*to know calculations and numbers if he wants to understand anything about tactics*". And shortly afterwards he argues that "*it would be better to impose this discipline by law and to persuade those who have to exercise the highest offices in the city to orient themselves towards the science of calculation and to study it not superficially, but until reaching the contemplation of the nature of numbers with a pure intellect , without using it to sell and buy, as merchants and shopkeepers do, but for war and to facilitate the conversion of the soul itself from becoming to truth and being*".
+
+From a quick web search, Plato's pointers were overlooked as the leaders of the world's most powerful nations have little to no math curriculum.
+
+Yet those who make such dramatic decisions as those relating to weapons and war should be able to understand the mathematical models that analysts propose to facilitate decision-making based on data and numerical considerations.
+
+It could be argued that the leaders of nations rely on qualified advisers to make strategic decisions. But this would be to say that decisions are made on the basis of considerations that cannot be fully understood by the decision-makers.
+
+In a democratic context, even those who practice the profession of journalist should be able to ask political leaders and explain to citizens salient points related to the war such as:\
+
+- what strategic game is the government playing?\
+
+- what is the probabilistic model within which the government takes its decisions?\
+
+- what are the expected outcomes of a war given the ratio of military forces?
+
+And the citizen cannot let himself be overwhelmed by the quantity of news, often incomplete, and comments, which express a single point of view since the others are not available during the war, without that organization of information and context which serve to form awareness.
+
+## motivations
+Concluding an essay with a section on its motivations seems contrary to the usual order of discussion.
+
+The reader will certainly have guessed that this short essay would never have seen the light if a terrible war event hadn't occurred in Eastern Europe.
+
+Not being able to understand the drama and historical significance of this war, the mathematical models presented in this short essay help to face it, to think about it.
+
+"On war", in this sense, would like to be against any truce of rationality. As in Tolstoy's quote introducing these conclusions, "on war" would also be an invitation to everyone to fight for their convictions or at least to form their own rational framework that allows them to think about war.

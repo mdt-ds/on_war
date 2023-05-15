@@ -1,1 +1,458 @@
 # Markovian War
+```{r}
+#| label: setup
+#| include: false
+
+library(diagram)
+library(tibble)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
+```
+
+> "*Only the dead have seen the end of war.*"\
+Plato
+
+The previous chapter focused on approaching warfare in terms of strategy by applying game theory, this chapter introduces an approach based on probabilities and stochastic processes.\
+To underline the importance of considering uncertainty Voltaire said: "*Doubt is not a pleasant condition, but certainty is absurd.*"\
+In a world where every moment is determined by an infinitely complex set of factors, probabilistic thinking helps identify the most probable outcomes and thus improve the accuracy and effectiveness of decisions.\
+Since warfare involves events that unfold over time, process-based probabilistic models are better suited for thinking about warfare.
+Stochastic processes can be defined as any process that describes the evolution of a random phenomenon over time or, more precisely, as any sequence of states in which the transitions through these states at any stage depend on chance.
+
+In the remainder of this chapter, Markov chains will be used to model and analyze both the probabilities of a nation going to war and the probabilities of how the war itself could evolve.
+
+
+## markov chains
+A Markov process is a stochastic process in which:
+
+- the set of possible states is finite;
+
+- the transition probability in a state depends only on the present state: this is the so-called Markov property which states that "the future is independent from the past given the present";
+
+- the transition probabilities are constant over time.
+
+From a mathematical point of view, Markov chain theory is a clever combination of probability theory and linear algebra that is used to model a real-world system that is in discrete states, but it is not entirely clear how has evolved.
+
+Thus the real-world system is modeled as a sequence of states that over time moves between states with a specific probability. Since the states are connected to each other, they form a chain.
+
+Markov chains are used in a variety of situations because they can be designed to model many real-world processes. These areas range from animal population mapping to search engine algorithms, music composition and speech recognition.
+
+Markov chains are exhaustively defined by a set of states and a transition probability matrix between them.
+If the Markov chain has $n$ possible states, the matrix will be a square matrix $n \cdot n$, such that the element $(i, j)$ is the transition probability from state $i$ to state $j$.\
+Also, the transition matrix must be a stochastic matrix, one whose entries in each row must sum to exactly 1. Similarly if the Markov chain is represented by drawing a transition state diagram, the probabilities of the transition arrows coming out from a node, or state, add up to one.
+
+To initialize a Markov chain an initial state vector $n \cdot 1$ is defined  in order to describe the starting probability distribution for each of the possible $n$ states. The $i$ entry of the vector describes the probability that the chain starts at state $i$.
+
+To obtain the multi-step transition probability, the one-step transition matrix is multiplied by itself by the number of necessary transitions. In other words, the transition probability of arriving at state $j$ from state $i$ after $n$ steps is indicated by the position $i,j$ of the transition matrix to the nth power.
+
+The stationary distribution represents the distribution of states for a long-term Markov process i.e. as the number of steps or transitions increases.
+A stationary distribution of a Markov chain is a probability distribution that remains unchanged after some transition period. Typically, it is represented as a row vector $π$ whose entries are probabilities that add to 1, and given the transition matrix $P$, it satisfies $π=π \cdot P$.
+The stationary distribution provides information on the stability of the random process and, in some cases, describes the limiting behavior of the Markov chain.
+
+Andrey Markov, the Russian mathematician who first studied this type of stochastic process, was able to prove that, as long as all states in the chain can be reached (irreducibility), the probability to be in a particular state will converge to a single constant value in the long run.
+
+::: {.callout-tip}
+## exploring further
+For an in-depth introduction to markov chains and stochastic processes, one can refer to @tijms2003, @kulkarni2009 and @pinsky_karlin2011.
+
+:::
+
+## will there be war?
+
+A nation can enjoy a long period of peace or face war depending on many factors including its geopolitical position, its alliances and the presence on its territory of goods of interest to other countries.
+It has been seen in history that the transition from peace to war can be triggered by a sudden and uncontrollable conflict or have deep roots, while the transition from war to peace is usually long and difficult but there is always an opportunity for peace as well.
+
+### markov chain model
+This real world situation can be modeled with a markov chain process with only two states:
+
+- *peace*, in this state the modeled nation is in peace with other countries;
+
+- *war*, on the contrary in this state nation is fighting with other countries.
+
+```{r}
+#| echo: false
+#| message: false
+
+
+n_war_states <- 2
+war_states <- c("peace", "war")
+
+```
+
+The hypothetical nation, if in a peaceful state, can remain in peace or can go to war and while in war can keep on fighting or make peace.
+The state transition diagram representing the markov chain model is displayed below.
+
+::: {.border}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig-height: 4
+
+war_chain <- matrix(
+      c(0.95, 0.05,
+        0.20, 0.80), byrow = TRUE,
+      nrow = n_war_states,
+      ncol = n_war_states,
+      dimnames = list(from = war_states,
+                      to = war_states)
+    )
+
+
+plotmat(A = t(war_chain), pos = c(2), box.col = "darkseagreen",
+        relsize = 1, cex = 0.75, arr.pos = 0.4, arr.tcol = "white",
+                 txt.col = "firebrick", txt.font = 9, box.prop = 0.65)
+
+```
+
+:::
+
+Such a Markov chain in which every state can be reached from every other state is said to be strongly connected or irreducible, and such a structure is the condition for the existence of a unique stationary distribution.
+
+To complete the Markov chain model it is necessary to define the transition probability matrix. Two different situations are considered:\
+
+- a peaceful nation;\
+
+- a nation at risk of war.
+
+### a peaceful nation
+
+Suppose the hypothetical nation is in a peaceful area where neighboring nations are also peaceful, it has good international relations with every country and no history of recent conflicts.
+In such a situation the probability of remaining in a peaceful state could be 0.98, and then going to war could be only 0.02.
+In war the probability of continuing to fight could be 0.65 and then achieving peace the probability should go up to 0.35.
+Note that the transition probabilities have been assigned completely arbitrarily for demonstration purpose only.
+The probability transition matrix below describes this model.
+
+```{r}
+#| echo: false
+#| message: false
+
+war_transitions <- matrix(
+      c(0.98, 0.02,
+        0.35, 0.65), byrow = TRUE,
+      nrow = n_war_states,
+      ncol = n_war_states,
+      dimnames = list(from = war_states,
+                      to = war_states)
+    )
+war_transitions %>% 
+  kable() %>% 
+  kable_material(full_width = TRUE) %>% 
+  add_header_above(c(" " = 1, "to" = 2)) %>% 
+  group_rows(group_label = "from", start_row = 1, end_row = 2)
+
+```
+
+
+Starting from a peace state, initial state vector with probability 1 of peace and probability 0 of war, the chances will evolve following the graph below.
+```{r}
+#| echo: false
+#| message: false
+
+war_ic <- matrix(c(1,0), nrow = 1)
+steps = 25
+war_evolution <- matrix(0, ncol = n_war_states, nrow = steps, 
+                        dimnames = list(time = 1:steps, war_states_prob = war_states))
+war_evolution[1,] <- war_ic %*% war_transitions 
+for (t in 2:steps) {
+  war_evolution[t,] <- war_evolution[t-1,] %*% war_transitions
+}
+
+
+war_evo_tbl <- as_tibble(war_evolution) %>% 
+  mutate(time_step = 1:steps) %>% 
+  relocate(time_step, .before = peace) %>% 
+  pivot_longer(cols = all_of(war_states), 
+               names_to = "war_state", values_to = "probability")
+
+war_evo_tbl %>% 
+  ggplot(aes(x = time_step, y = probability)) +
+  geom_line(aes(color = war_state), linewidth = 1.5) +
+  scale_color_manual(values = c("seagreen", "darkred")) +
+  scale_y_continuous(n.breaks = 10, limits = c(0,1)) +
+  ggtitle("stochastic dynamical war model simulation", 
+          subtitle = "asymptotical analysis")
+```
+In this case probabilities to enter war increase very slightly reaching the stationary distribution represented as in the table below.
+
+```{r}
+#| echo: false
+#| message: false
+
+compute_steadystate <- function(transitions, states_names) {
+  A <- rbind(t(diag(nrow(transitions)) - transitions),
+         rep(1, ncol(transitions)))
+  b <- c(rep(0, nrow(transitions)),
+         1)
+  ss_probabilities <- qr.solve(A, b)
+  ##names(ss_probabilities) <- states_names
+  ss_prob_tbl <- tibble(state = states_names, probability = ss_probabilities)
+  return(ss_prob_tbl)
+}
+
+compute_steadystate(transitions = war_transitions, states_names = war_states) %>% 
+  pivot_wider(names_from = state, values_from = probability) %>% 
+  mutate(row_label = "steady state probabilities") %>% 
+  column_to_rownames(var = "row_label") %>% #
+  kable(align = c("c", "c")) %>% 
+  kable_material_dark() 
+
+```
+
+A hypothetical peaceful nation maintains high probabilities of being at peace within a strongly connected two-state Markov chain model. Yet over time the probability of being in a peaceful state has decreased somewhat.
+
+### a nation at risk of war
+
+The model presented in this section assumes that the hypothetical nation is in a turbulent area where some neighboring nations are at war, it has a difficult international relationship with some neighboring countries and a history of recent conflicts.
+In such a situation the probability of remaining in a peaceful state could be 0.74, and therefore the probability of going to war could be 0.26,
+In war the probability of continuing to fight could be 0.85 and therefore the probability of achieving peace should be 0.15.
+Note that, also in this case, the transition probabilities have been assigned completely arbitrarily for demonstration purpose only.
+The probability transition matrix below describes this model.
+
+```{r}
+#| echo: false
+#| message: false
+
+war_transitions <- matrix(
+      c(0.74, 0.26,
+        0.15, 0.85), byrow = TRUE,
+      nrow = n_war_states,
+      ncol = n_war_states,
+      dimnames = list(from = war_states,
+                      to = war_states)
+    )
+war_transitions %>% 
+  kable() %>% 
+  kable_material(full_width = TRUE) %>% 
+  add_header_above(c(" " = 1, "to" = 2)) %>% 
+  group_rows(group_label = "from", start_row = 1, end_row = 2)
+
+```
+
+Starting from a peace state the probabilities will evolve following the graph below.
+```{r}
+#| echo: false
+#| message: false
+
+war_ic <- matrix(c(1,0), nrow = 1)
+steps = 25
+war_evolution <- matrix(0, ncol = n_war_states, nrow = steps, 
+                        dimnames = list(time = 1:steps, war_states_prob = war_states))
+war_evolution[1,] <- war_ic %*% war_transitions 
+for (t in 2:steps) {
+  war_evolution[t,] <- war_evolution[t-1,] %*% war_transitions
+}
+
+war_evo_tbl <- as_tibble(war_evolution) %>% 
+  mutate(time_step = 1:steps) %>% 
+  relocate(time_step, .before = peace) %>% 
+  pivot_longer(cols = all_of(war_states), 
+               names_to = "war_state", values_to = "probability")
+
+war_evo_tbl %>% 
+  ggplot(aes(x = time_step, y = probability)) +
+  geom_line(aes(color = war_state), linewidth = 1.5) +
+  scale_color_manual(values = c("seagreen", "darkred")) +
+  scale_y_continuous(n.breaks = 10, limits = c(0,1)) +
+  ggtitle("stochastic dynamical war model simulation", 
+          subtitle = "asymptotical analysis")
+```
+After only three time steps, say years, the hypothetical nation would have same probability to find itself in war or in peace. And then war probabilities continue to increase reaching the stationary distribution represented as in the table below.
+
+```{r}
+#| echo: false
+#| message: false
+
+compute_steadystate <- function(transitions, states_names) {
+  A <- rbind(t(diag(nrow(transitions)) - transitions),
+         rep(1, ncol(transitions)))
+  b <- c(rep(0, nrow(transitions)),
+         1)
+  ss_probabilities <- qr.solve(A, b)
+  ##names(ss_probabilities) <- states_names
+  ss_prob_tbl <- tibble(state = states_names, probability = ss_probabilities)
+  return(ss_prob_tbl)
+}
+
+compute_steadystate(transitions = war_transitions, states_names = war_states) %>% 
+  pivot_wider(names_from = state, values_from = probability) %>% 
+  mutate(row_label = "steady state probabilities") %>% 
+  column_to_rownames(var = "row_label") %>% #
+  kable(align = c("c", "c")) %>% 
+  kable_material_dark() 
+
+```
+
+In the long run a hypothetical nation at risk of war will see the odds of being at war increase a lot considering a fully connected two-states Markov chain.
+
+## will there be peace again?
+
+In this section, war itself and its possible states in the course of its evolution are modeled.\
+In a certain period war can be harsh and require a high cost in terms of human lives, civilians and soldiers, and of military and economic resources. Later the situation can become even more difficult both because the war can be extended to other countries and because unconventional weapons can be used. It is possible, on the contrary, that the war enters a state of greater calm in which the fighting subsides. This de-escalation phase can then eventually lead to the initiation of peace talks between enemies and the establishment of truces on battlefronts.
+
+### markov chain model
+This war evolution can be modeled as a markov chain with only four states:
+
+- **war escalation** meaning more arms, more battles, more destruction and casualties;
+
+- **war de-escalation** meaning, on the contrary, no new arms, less battles, less destruction and casualties;
+
+- **truce** means truce on battlefronts, peace talks and possibly a ceasefire agreement;
+
+- **war expansion** meaning that other nations enters directly in fights leading to a potential regional or world war and / or that opponents starts using non conventional weapons  including chemical, biological or nuclear weapons.
+
+The war can evolve in almost any direction excluding going:\
+
+- from war escalation state directly to a truce phase;\
+
+- from war de escalation state directly to war expansion;\
+
+- from war expansion state directly to a truce phase;\ 
+
+- from truce state directly to war expansion.
+
+However, the chain remains irreducible since from any state it is possible to reach any other state even if not necessarily in one step.
+
+The following state transition diagram fully describes the Markov chain.
+
+::: {.border}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig-height: 5
+
+n_peace_states <- 4
+peace_states <- c("war_escalation", "war_deescalation", "truce", "war_expansion")
+
+peace_chain <- matrix(
+      c(0.50, 0.25, 0.00, 0.25,
+        0.25, 0.50, 0.25, 0.00,
+        0.25, 0.25, 0.50, 0.00,
+        0.25, 0.25, 0.00, 0.50), byrow = TRUE,
+      nrow = n_peace_states,
+      ncol = n_peace_states,
+      dimnames = list(to = peace_states,
+                      from = peace_states)
+    )
+
+plotmat(A = t(peace_chain), pos = c(1,2,1), box.col = "darkseagreen",
+        relsize = 0.8, cex = 0.75, arr.pos = 0.4, arr.tcol = "white",
+                 txt.col = "firebrick", txt.font = 9, box.prop = 0.65)
+
+```
+
+:::
+
+### a war evolving situation
+The situation to be modeled relates to a war in a turbulent region where the enemies have strong alliances. and are determined to achieve their goals through warfare.
+In this condition the transition probabilities could be represented by the following transition probability matrix.
+
+```{r}
+#| echo: false
+#| message: false
+
+
+n_peace_states <- 4
+peace_states <- c("escalation", "de-escalation", "truce", "expansion")
+
+peace_transitions <- matrix(
+      c(0.90, 0.05, 0.00, 0.05,
+        0.25, 0.65, 0.10, 0.00,
+        0.05, 0.25, 0.70, 0.00,
+        0.08, 0.02, 0.00, 0.90), byrow = TRUE,
+      nrow = n_peace_states,
+      ncol = n_peace_states,
+      dimnames = list(to = peace_states,
+                      from = peace_states)
+    )
+peace_transitions %>% 
+  kable() %>% 
+  kable_material(full_width = TRUE) %>% 
+  add_header_above(c(" " = 1, "to" = 4)) %>% 
+  group_rows(group_label = "from", start_row = 1, end_row = 4)
+
+```
+
+If the war is in a state of escalation, it has a 0.90 chance of remaining in this state and only a 0.05 chance of reducing or expanding the war. On the other hand, there is no possibility of entering a state of truce.
+If the war is in a state of escalation, the odds are 0.65 of remaining in this state, 0.25 of entering a state of escalation of war, and 0.10 of initiating a state of truce.
+Starting from a state of truce it is not possible to move to a war expansion while the probability of remaining in a truce is 0.70, the probability of entering a state of de-escalation is 0.25 and of moving to a state of escalation is 0.05.
+If the war is expanding, it cannot go into truce but escalate with probability 0.08 or de-escalate with probability 0.02.
+Note that, as with previous models, the transition probabilities have been assigned completely arbitrarily for demonstration purposes only.
+
+The following graph shows the probabilities evolution computed with linear algebra.
+```{r}
+#| echo: false
+#| message: false
+
+peace_ic <- matrix(c(1,0,0,0), nrow = 1)
+steps = 25
+peace_evolution <- matrix(0, nrow = steps, ncol = n_peace_states, 
+                        dimnames = list(time = 1:steps,
+                                        peace_states_prob = peace_states))
+peace_evolution[1,] <- peace_ic %*% peace_transitions
+for (t in 2:steps) {
+  peace_evolution[t,] <- peace_evolution[t-1,] %*% peace_transitions
+}
+
+peace_evo_tbl <- as_tibble(peace_evolution) %>% 
+  mutate(time_step = 1:steps) %>% 
+  relocate(time_step, .before = escalation) %>% 
+  pivot_longer(cols = all_of(peace_states), names_to = "war_state", values_to = "probability")
+
+peace_evo_tbl %>% 
+  ggplot(aes(x = time_step, y = probability)) +
+  geom_line(aes(color = war_state), linewidth = 1.5) +
+  scale_color_manual(values = c("orange", "darkred", "black", "seagreen")) +
+  ggtitle("stochastic dynamical war model simulation", 
+          subtitle = "asymptotical analysis")
+```
+
+After 25 steps, say months, war probabilities are very stable and near the stationary distribution represented as in the table below.
+
+```{r}
+#| echo: false
+#| message: false
+
+compute_steadystate(transitions = peace_transitions, states_names = peace_states) %>% 
+  pivot_wider(names_from = state, values_from = probability) %>% 
+  mutate(row_label = "steady state probabilities") %>% 
+  column_to_rownames(var = "row_label") %>% #
+  kable(align = c("c", "c", "c", "c"), digits = 2, 
+        col.names = c("escalation", "de-escalation", "truce", "expansion"),
+        row.names = TRUE) %>% 
+  kable_material_dark()
+
+```
+
+In the long run given the constant probability transition matrix for the modeled situation, be in a war escalation state has still the greater probability.
+The second probable state is war expansion. Truce reach no more than 0.05 probability.
+
+## key takeways
+
+Reasoning about war using a Markov chain helps to understand the stochastic process, i.e. how probabilities evolve.
+
+The Markov chain models described above, although simple and subject to Markov limitations (being memoryless and having transition probabilities constant of one step), show that in a connected chain the probabilities of being in a state do not remain constant over time until they reach their stationary distribution.
+
+In both models presented, the chances of things getting even worse increase over time.
+This is not that relevant as the models have been set up completely fictitiously.
+
+The point to underline is that it is not enough to estimate the probabilities at a given moment, but to understand how the probabilities of being in a given state evolve over time.
+
+::: {.callout-caution collapse="true"}  
+## computation with R
+
+In order to learn how to compute linear algebra in R, please read Mario De @detoma2020.
+
+For this chapter the following R packages have been used:\
+
+- *tibble* by @tibble, *dplyr* by @dplyr and *tidyr* by @tidyr for data manipulation;
+
+- *diagram* by Karlin @diagram2020 for graphing the state transition diagrams;
+
+- *kableExtra* by Hao @kableExtra2021 for visualizing tables;
+
+- *ggplot2* by Hadley @wickham2016 for plotting the time evolution of the probabilities.
+
+:::

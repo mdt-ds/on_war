@@ -21,6 +21,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -70,6 +89,9 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 </script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 </head>
@@ -170,7 +192,19 @@ gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#war-strategy-through-game-theory" id="toc-war-strategy-through-game-theory" class="nav-link active" data-scroll-target="#war-strategy-through-game-theory"><span class="toc-section-number">2.1</span>  war strategy through game theory</a></li>
+  <li><a href="#war-or-peace" id="toc-war-or-peace" class="nav-link" data-scroll-target="#war-or-peace"><span class="toc-section-number">2.2</span>  war or peace</a></li>
+  <li><a href="#generals-deploy-their-armies" id="toc-generals-deploy-their-armies" class="nav-link" data-scroll-target="#generals-deploy-their-armies"><span class="toc-section-number">2.3</span>  generals deploy their armies</a></li>
+  <li><a href="#cold-war" id="toc-cold-war" class="nav-link" data-scroll-target="#cold-war"><span class="toc-section-number">2.4</span>  cold war</a></li>
+  <li><a href="#a-rush-towards-clash" id="toc-a-rush-towards-clash" class="nav-link" data-scroll-target="#a-rush-towards-clash"><span class="toc-section-number">2.5</span>  a rush towards clash</a></li>
+  <li><a href="#infinite-games" id="toc-infinite-games" class="nav-link" data-scroll-target="#infinite-games"><span class="toc-section-number">2.6</span>  Infinite games</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways"><span class="toc-section-number">2.7</span>  key takeaways</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -192,8 +226,342 @@ gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 
 </header>
 
+<blockquote class="blockquote">
+<p>“<em>War is a game that is played with a smile. If you can’t smile, grin. If you can’t grin, keep out of the way till you can.</em>”<br>
+Winston Churchill</p>
+</blockquote>
+<p>In order to rationally address the issue of war, it is necessary to understand that war cannot be governed only as an optimization problem that regulates objective functions and constraints, nor even as a planning effort that declines the final objectives into specific actions to be implemented. Instead, it’s more like a strategy game.</p>
+<p>The main feature of a strategy game is that the outcome of the game depends significantly and decisively on the decisions made by each player and not by any particular player. No one plays alone and the opponent’s moves influence the outcome of yours.</p>
+<p>The second feature to keep in mind in understanding a strategic game is that each player has their own ultimate goals. So not all players evaluate the outcome of a game in the same way.</p>
+<p>The third feature is that each player can decide between a different range of strategic choices to achieve their goals depending on the situation, skills and resources available to each.</p>
+<p>In short, a strategy game defines a situation where different parties compete to achieve their goals with their choices of action, a so called strategic interaction.</p>
+<p>The right attitude to face this type of interaction is expressed by this sentence of Abraham Lincoln who said: “<em>When I prepare to reason with a man, I spend a third of my time thinking about myself and what I’m about to say, and two-thirds to him and what he is about to say.</em>”</p>
+<p>Indeed, in a war context it may be more relevant to consider what the enemy’s next move will be than to find out what is the best military plan in the current context.</p>
+<p>Sun Tzu in his Art of War said: “<em>If you know the enemy and you know yourself, you need not fear the results of a hundred battles. If you know yourself but not the enemy, for every victory you get you will also suffer defeat. If you don’t know neither the enemy nor yourself, you will succumb in every battle.</em>”</p>
+<section id="war-strategy-through-game-theory" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="war-strategy-through-game-theory"><span class="header-section-number">2.1</span> war strategy through game theory</h2>
+<p>Game theory is a mathematical theory that tries to make sense of strategic interactions.</p>
+<p>Major contributions to game theory as a mathematical theory include:<br>
+</p>
+<ul>
+<li><p>John Von Neumann and Oskar Morgenstern 1944 “Theory of Games and Economic Behavior” in which a mathematical theory for two-person zero-sum games is presented;<br>
+</p></li>
+<li><p>John Nash 1950 doctoral thesis “non-cooperative games” discussing a criterion for the mutual consistency of player strategies known as the Nash equilibrium;<br>
+</p></li>
+<li><p>the concept of solving subgame perfect equilibria, which further refined the Nash equilibrium, introduced in 1965 by Reinhard Selten. Selten also introduced the idea of bounded rationality that rationality is bounded when individuals make decisions, and based on these limitations, rational individuals will select a satisfactory decision rather than an optimal one.</p></li>
+</ul>
+<p>Game theory has applications in all fields of the social sciences, as well as strategic decision-making, logic, systems science, and computer science.</p>
+<p>In game theory, a game is described by four elements:<br>
+</p>
+<ul>
+<li><p>the players, or opponents as called in this short essay;<br>
+</p></li>
+<li><p>the strategies available to the players;<br>
+</p></li>
+<li><p>the order of moves to be played and<br>
+</p></li>
+<li><p>the payoffs for each different result and player.</p></li>
+</ul>
+<p><em>Opponents</em> (players in the classic game theory literature) are agents who make rational decisions in the conduct of the game: there are at least two opponents in any game or conflict.</p>
+<p><em>Strategies</em> are the set of alternative actions that each opponent can take in a game at a particular turn in the case of sequential game.</p>
+<p><em>Move order</em> can be simultaneous or sequential. In simultaneous play the opponents make their decision at the same time without having any prior knowledge of the opponent’s move. In sequential play, on the other hand, the opponent who moves later knows the strategy adopted in the previous move by his opponents. Ways to solve a game vary depending on the order of movement of the game as the notion of equilibrium is not sufficient to reason about sequential game.</p>
+<p><em>Payoffs</em> measure each opponent’s preference for the outcome resulting from opponents’ choices. The payoff number therefore indicates how satisfying (positive payoff) or unsatisfactory (negative payoff) a certain outcome of the game would be for a specific player.</p>
+<p>In the four games (or conflicts) presented below in this section, the following assumptions hold:</p>
+<ul>
+<li><p>games have a finite number of opponents where each has a finite number of possible courses of action;</p></li>
+<li><p>each opponent will always act rationally by choosing the best answer in order to maximize gains and minimize losses for himself;</p></li>
+<li><p>the payoffs are fixed and predetermined.</p></li>
+</ul>
+<p>Under these hypotheses it is possible to analyze strategic games in order to predict how a game will be played, which strategies will be adopted by the players and the final outcomes and related payoffs. These predictions are called “solutions”.</p>
+<p>Solutions for simultaneous play can be found using one of the following concepts:<br>
+</p>
+<ul>
+<li><p>strategic (strict) dominance;<br>
+</p></li>
+<li><p>better response and Nash equilibrium.</p></li>
+</ul>
+<p><em>Strategic dominance</em> occurs when one player’s strategy yields increasingly better payoffs regardless of the decisions of other opponents. The iterative elimination of strictly dominated strategies allows to find an equilibrium solution.</p>
+<p>The <em>best response</em> is the strategy (or strategies) that produces the most favorable outcome for one player, taking the other players’ strategies for granted. The points by which each opponent in a conflict has selected the best response (or one of the best responses) to the other players’ strategies is called <em>Nash equilibria</em>.</p>
+<p>The Nash equilibrium could be defined as a profile of strategies (one for each player) such that no single player can obtain a higher payoff by choosing another response to the strategies of other players.</p>
+<p>In sequential games instead it is necessary to use the concept of perfect subgame equilibrium to find the solution to the given game. A subgame perfect equilibrium represents a Nash equilibrium of each subgame of the original game.</p>
+<p>This means that at any point in the game, player behavior thereafter should represent a Nash equilibrium of the game, regardless of what happened before. To determine perfect subgame equilibria the methodology called backward induction is applied. Starting at the end of the game and working backwards determines what actions the moving player should take under all possible circumstances to maximize his utility and/or minimize his losses. The set of strategies thus determined are the solution to the game.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+exploring further
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For an in-depth introduction to game theory, one can refer to <span class="citation" data-cites="dresher1961">Dresher (<a href="references.html#ref-dresher1961" role="doc-biblioref">1961</a>)</span>, <span class="citation" data-cites="fudemberg_tirole1991">Drew Fudenberg (<a href="references.html#ref-fudemberg_tirole1991" role="doc-biblioref">1991</a>)</span>, <span class="citation" data-cites="osborne_rubinstein1994">Martin J. Osborne (<a href="references.html#ref-osborne_rubinstein1994" role="doc-biblioref">1994</a>)</span>, and <span class="citation" data-cites="tadelis2013">Tadelis (<a href="references.html#ref-tadelis2013" role="doc-biblioref">2013</a>)</span>.</p>
+</div>
+</div>
+</section>
+<section id="war-or-peace" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="war-or-peace"><span class="header-section-number">2.2</span> war or peace</h2>
+<p>War or Peace game is a simultaneous game where each opponent makes their move at the same time. The War or Peace game is a simultaneous game where each opponent makes their move at the same time. The situation depicted in the game is that of two nations targeting each other’s resources or contending for border territory. The opponents are country 1 and country 2 respectively. Each of the opponents can decide whether to wage war or remain in peace. The utility gained if both countries agree to be at peace is zero. If one of the two countries makes war while the other remains at peace, the first country will benefit. In the event that both countries enter the war, both could benefit from the new situation created.</p>
+<p>The normal form representation of the game is defined by the following payoff matrix.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-classic table" style="font-family: Arial; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+<tr>
+<th style="empty-cells: hide;" colspan="2"></th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; font-weight: bold; " colspan="2"><div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">country2</div></th>
+</tr>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> strategy </th>
+   <th style="text-align:center;"> peace </th>
+   <th style="text-align:center;"> war </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> country1 </td>
+   <td style="text-align:center;"> peace </td>
+   <td style="text-align:center;"> 0, 0 </td>
+   <td style="text-align:center;"> 0, 5^ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;">  </td>
+   <td style="text-align:center;"> war </td>
+   <td style="text-align:center;"> 5^, 0 </td>
+   <td style="text-align:center;"> 3^, 3^ </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>The solution to the game of war or peace, assuming rational choices, is war, war. Considering the concept of strategic dominance, it can be seen that for country 1, supporting peace (row 1, payoffs 0 and 0) is a decision dominated by the war strategy (row 2, payoffs 5 and 3). The same can be seen for country 2 for which being at peace (column 1, payoffs 0 and 0) gives worse results than going to war (column 2, payoffs 5 and 3) regardless of the decisions of the contender.<br>
+Considering the concept of best response and Nash equilibrium it is easy to realize that no opponent has an incentive to deviate from the war decision.<br>
+The only solution seems to be war!</p>
+</section>
+<section id="generals-deploy-their-armies" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="generals-deploy-their-armies"><span class="header-section-number">2.3</span> generals deploy their armies</h2>
+<p>The strategic decision between peace or war has been made: war.<br>
+Now it’s the turn of military operations and the generals of both sides have to decide how many armies to deploy to the front. If one general face a battle with more armies than the other, he wins. When the generals deploy the same amount of forces the war scenario becomes a stalemate.</p>
+<p>Assuming that the generals have comparable forces at their disposal, the following normal form game matrix describes the game.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-classic table" style="font-family: Arial; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+<tr>
+<th style="empty-cells: hide;" colspan="2"></th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; font-weight: bold; " colspan="4"><div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">general2</div></th>
+</tr>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> strategy </th>
+   <th style="text-align:center;"> no armies </th>
+   <th style="text-align:center;"> few armies </th>
+   <th style="text-align:center;"> a lot of armies </th>
+   <th style="text-align:center;"> all the armies </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> general1 </td>
+   <td style="text-align:center;"> no armies </td>
+   <td style="text-align:center;"> 0, 0 </td>
+   <td style="text-align:center;"> -1, 1^ </td>
+   <td style="text-align:center;"> -1, 1^ </td>
+   <td style="text-align:center;"> -1, 1^ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;">  </td>
+   <td style="text-align:center;"> few armies </td>
+   <td style="text-align:center;"> 1^, -1 </td>
+   <td style="text-align:center;"> 0, 0 </td>
+   <td style="text-align:center;"> -1, 1^ </td>
+   <td style="text-align:center;"> -1, 1^ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;">  </td>
+   <td style="text-align:center;"> a lot of armies </td>
+   <td style="text-align:center;"> 1^, -1 </td>
+   <td style="text-align:center;"> 1^, -1 </td>
+   <td style="text-align:center;"> 0, 0 </td>
+   <td style="text-align:center;"> -1, 1^ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;">  </td>
+   <td style="text-align:center;"> all the armies </td>
+   <td style="text-align:center;"> 1^, -1 </td>
+   <td style="text-align:center;"> 1^, -1 </td>
+   <td style="text-align:center;"> 1^, -1 </td>
+   <td style="text-align:center;"> 0^, 0^ </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>The strategy profile that requires both sides to use their entire arsenal is the Nash equilibrium. No general will find preferable to make a moderate use of the force knowing that the enemy will try as hard as he can to overcome.<br>
+Analyzing this game the solution lead to more war, more arms. Strike as hard as you can is the basic idea of armed conflicts.</p>
+</section>
+<section id="cold-war" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="cold-war"><span class="header-section-number">2.4</span> cold war</h2>
+<p>Cold War refers to an historical period, after World War II and before the Berlin wall fall, of geopolitical tension between the United States and the Soviet Union and their respective allies, the Western Bloc and the Eastern Bloc.</p>
+<p>Cold war strategic situation can be described as a sequential game. This kind of game specifies the possible orders of events and allows each player to consider his plan of action not only at the beginning of the game but also whenever he has to make a decision. Respecting the historical fact that USA realized and used the nuclear bomb first, the game described in its extensive form by the tree diagram below gives USA the first move. Reverting the order of opponents move nothing change in the meaning of the game.</p>
+<div class="cell">
+
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="war_games_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="960"></p>
+<p></p><figcaption class="figure-caption">Solved Cold War Game</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>USA move first and can decide to attack or not, then USSR can retaliate or not. The preference for USA should be attack with a don’t retaliate response of the Eastern bloc. This USSR response option is clearly not credible. Once nuclear bombed Eastern bloc would surely react. As matter of fact solving this game with backward induction leads to a don’t attack, don’t attack equilibrium.<br>
+The backwards reasoning is as follows, if the USSR were attacked it would suffer equally whether it retaliated or not, but it is reasonable to assume that it would prefer to see the US equally affected. So the choice would be to fight back. Knowing this, the United States would find it advantageous not to attack.<br>
+</p>
+<p>The solution of the cold war game is the reason why you, the reader, and the author too, can wake up tomorrow morning.</p>
+<p>With regard to the historical events related to the cold war, it is also interesting to remember how Ronald Reagan and Michail Gorbachev facilitated the easing of tensions between the two blocs at the end of the cold war. They did it one small step after another. Each deal required the elimination of a few nuclear weapons at a time by both sides.<br>
+What you can’t do in one go, maybe you can achieve step by step.</p>
+</section>
+<section id="a-rush-towards-clash" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="a-rush-towards-clash"><span class="header-section-number">2.5</span> a rush towards clash</h2>
+<p>Considering a simultaneous game, called “chicken” in game theory literature, it is possible to arrive at slightly different solutions. The game situation is that of two countries in open conflict that can decide to escalate or to concede. Both countries have weapons of mass destruction, so if both decide to step up the outcome will be something neither would prefer (payoffs -100, -100). If both countries withdraw they will gain nothing, they will remain at the status quo (payoffs 0, 0). If one country proceeds to escalate the use of warfare while the other retreats, the first country will win the conflict (payoffs 5, -5).</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-classic table" style="font-family: Arial; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+<tr>
+<th style="empty-cells: hide;" colspan="2"></th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; font-weight: bold; " colspan="2"><div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">country2</div></th>
+</tr>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> strategy </th>
+   <th style="text-align:center;"> escalate </th>
+   <th style="text-align:center;"> concede </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> country1 </td>
+   <td style="text-align:center;"> escalate </td>
+   <td style="text-align:center;"> -100, -100 </td>
+   <td style="text-align:center;"> 5^, -5^ </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;">  </td>
+   <td style="text-align:center;"> concede </td>
+   <td style="text-align:center;"> -5^, 5^ </td>
+   <td style="text-align:center;"> 0, 0 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Solving the game, two pure strategy Nash equilibria are found: escalate, concede and concede, escalate.</p>
+<p>In discussing the games so far, opponents choose unique actions from the set of available actions. These are called pure strategies. In this game of escalation, however, an opponent may want to randomly choose between several courses of action. If an opponent randomly chooses which strategy to play, we say that the opponent is using a “mixed strategy” instead of a pure strategy. In a pure strategy an opponent definitely chooses an action, while in a mixed strategy he chooses a probability distribution on all the actions at his disposal.</p>
+<p>A mixed strategy for an opponent is exactly a probability distribution over his set of available actions. At a mixed strategy Nash equilibriun, each opponent is indifferent between each of their pure strategy.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-classic" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1"></th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">mixed strategy NE</div></th>
+</tr>
+  <tr>
+   <th style="text-align:left;"> strategy </th>
+   <th style="text-align:right;"> country1 </th>
+   <th style="text-align:right;"> country2 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> escalate </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.05 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> concede </td>
+   <td style="text-align:right;"> 0.95 </td>
+   <td style="text-align:right;"> 0.95 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>The surprising result is that both opponents find a 5% probability of war escalation reasonable in a randomized hypothesis. In other words, there is a 5% chance of destroying our world which is thought to be reasonable.</p>
+</section>
+<section id="infinite-games" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="infinite-games"><span class="header-section-number">2.6</span> Infinite games</h2>
+<p>So far we have examined the so-called finite games, i.e.&nbsp;games characterized by a finite and known number of players, by pre-established rules and by clear and somewhat known objectives among the parties involved.</p>
+<p>However, there are also infinite games (as introduced by <span class="citation" data-cites="sinek2019">Sinek (<a href="references.html#ref-sinek2019" role="doc-biblioref">2019</a>)</span> and <span class="citation" data-cites="carse1987">Carse (<a href="references.html#ref-carse1987" role="doc-biblioref">1987</a>)</span>) in which the rules are not fixed and the goal of the game is not to win or get what you want, but to continue playing.</p>
+<p>Problems can arise when some players play finite games while others play infinite games as different types of players make very different strategic choices.</p>
+<p>Two examples in the context of this essay may clarify the idea.</p>
+<p>Considering the US war intervention in Vietnam and the Russian invasion of Afghanistan, the US and Russia tried to win the war while the North Vietnamese and the Taliban were fighting for their lives. In both cases the players in a finite game context have run out of resources and the will to continue playing.</p>
+</section>
+<section id="key-takeaways" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="key-takeaways"><span class="header-section-number">2.7</span> key takeaways</h2>
+<p>Game theory provides some insight into warfare.<br>
+The war or peace game suggests that war may be a rational decision given the characteristics of the game.<br>
+Generals … indicates that it is highly probable that all military assets will be deployed in the event of an armed conflict.<br>
+In cold war strategy game solution is not peace but to keep the tension high again and again.<br>
+The “rush towards clash” game indicates that it might be rational to keep a low probability of deciding the worst potential outcome.<br>
+</p>
+<p>As a general consideration, if warfare is viewed as a strategic game, players must ensure that they fully understand the definition of the game and therefore that they know who the players are, what strategies they can implement, the order of players’ moves and the preferences of each player for each possible outcome of the game.</p>
+<p>As food for thought, it should be noted that the rational decision of states and world leaders may not be the rational choice for ordinary people living in those countries who in many cases are considered not a player but a pawn.</p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+computation with R
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The game presented in the chapter are computed and visualized using R package <em>rgamer</em> by <span class="citation" data-cites="rgamer2023">Kamijo and Yanai (<a href="references.html#ref-rgamer2023" role="doc-biblioref">2023</a>)</span>.</p>
+</div>
+</div>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-carse1987" class="csl-entry" role="doc-biblioentry">
+Carse, James P. 1987. <em>Finite and Infinite Games</em>. Ballantine Books.
+</div>
+<div id="ref-dresher1961" class="csl-entry" role="doc-biblioentry">
+Dresher, Melvin. 1961. <em>Games of Strategy: Theory and Applications</em>. Prentice Hall.
+</div>
+<div id="ref-fudemberg_tirole1991" class="csl-entry" role="doc-biblioentry">
+Drew Fudenberg, Jean Tirole. 1991. <em>Game Theory</em>. The MIT Press.
+</div>
+<div id="ref-rgamer2023" class="csl-entry" role="doc-biblioentry">
+Kamijo, Yoshio, and Yuki Yanai. 2023. <em>Rgamer: Learn Game Theory Using r</em>.
+</div>
+<div id="ref-osborne_rubinstein1994" class="csl-entry" role="doc-biblioentry">
+Martin J. Osborne, Ariel Rubinstein. 1994. <em>A Course in Game Theory</em>. The MIT Press.
+</div>
+<div id="ref-sinek2019" class="csl-entry" role="doc-biblioentry">
+Sinek, Simon. 2019. <em>The Infinite Game</em>. Portfolio - Penguin Books.
+</div>
+<div id="ref-tadelis2013" class="csl-entry" role="doc-biblioentry">
+Tadelis, Steven. 2013. <em>Game Theory: An Introduction</em>. Princeton University Press.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

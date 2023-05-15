@@ -21,6 +21,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -71,6 +90,10 @@ gtag('js', new Date());
 gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 </script>
 
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -170,7 +193,15 @@ gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#wars-in-history" id="toc-wars-in-history" class="nav-link active" data-scroll-target="#wars-in-history"><span class="toc-section-number">1.1</span>  wars in history</a></li>
+  <li><a href="#military-expenditure" id="toc-military-expenditure" class="nav-link" data-scroll-target="#military-expenditure"><span class="toc-section-number">1.2</span>  military expenditure</a></li>
+  <li><a href="#key-takeways" id="toc-key-takeways" class="nav-link" data-scroll-target="#key-takeways"><span class="toc-section-number">1.3</span>  key takeways</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -192,8 +223,585 @@ gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 
 </header>
 
+<blockquote class="blockquote">
+<p>“<em>You can’t say civilization don’t advance… in every war they kill you in a new way.</em>”<br>
+Will Rogers, American actor</p>
+</blockquote>
+<p>The analysis of historical data on the war has already been recently attempted with conflicting results.</p>
+<p>According to Steven <span class="citation" data-cites="pinker2012">Pinker (<a href="references.html#ref-pinker2012" role="doc-biblioref">2012</a>)</span>, violence has been in decline for long periods of time and we may be living in the most peaceful period of the existence of our species. Pinker explains this decline by indicating some historical processes that lead to progress in political, social and civil organization. A 2016 article by <span class="citation" data-cites="cirillo_taleb2016">Taleb and Cirillo (<a href="references.html#ref-cirillo_taleb2016" role="doc-biblioref">2016</a>)</span>, titled “<em>The Decline of Violent Conflicts: What Do The Data Really Say?</em>” , argued on the contrary that our current peaceful era is a statistical myth due to the variability inherent in the phenomenon called war. The 2016 article lists 5 major issues in quantitative historiography: fat tails, boundedness, reliability of historical data, definition of a war event and units for the analysis.</p>
+<p>The data sources used in the chapter highlight in particular problems of reliability and relative coherence of historical data also in relation to the different historiographical criteria for defining a war event.</p>
+<p>For these reasons, the chapter does not venture into a quantitative analysis and don’t try to resolve the aforementioned conflicting positions, but simply proceed by exploring some public data concerning the history of warfare and military spending in the contemporary age.<br>
+</p>
+<p>This exploratory analysis of the data will confirm a few simple and trivial observations about the war:<br>
+</p>
+<ul>
+<li><p>war is a constant in the history of humanity;<br>
+</p></li>
+<li><p>war has always produced death and destruction;<br>
+</p></li>
+<li><p>there is no country that does not think at least of its own defense, if not to prepare for a possible war.</p></li>
+</ul>
+<section id="wars-in-history" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="wars-in-history"><span class="header-section-number">1.1</span> wars in history</h2>
+<p>In this section three public datasets were used to conduct a simple exploratory data analysis about wars in history:<br>
+</p>
+<ul>
+<li><p>list of wars from the Encyclopedia Britannica;<br>
+</p></li>
+<li><p>Conflict Catalog Data made available by Dr.&nbsp;Peter Brecke;<br>
+</p></li>
+<li><p>wikipedia list of wars.</p></li>
+</ul>
+<p>According to the <a href="https://www.britannica.com/topic/list-of-wars-2031197">list of wars</a> published by the Encyclopedia Britannica, it is possible to count 137 wars from the 12th century BC until the beginning of the twenty-first century.</p>
+<p>The list begins with the legendary conflict between the early Greeks and the Trojan people in western Anatolia celebrated in Homer’s Iliad and Odyssey and concludes by reporting the uprising in Syria that began in 2011 and ended in 2020 with a ceasefire.</p>
+<p>While this list is not exhaustive, the distribution over history centuries of wars summarized in the graph below shows that the last three centuries of history are the most warlike.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="war_trends_files/figure-html/list of wars-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In 20th century the list includes 37 wars:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Acehnese War (1873–1904), Philippine-American War (1899–1902), South African War (1899–1902), The War of a Thousand Days (1899–1903), Boxer Rebellion (1900–01), Moro Wars (1901–13), Russo-Japanese War (1904–05), Pig War (1906–09), Mexican Revolution  (1910–20), Italo-Turkish War (1911–12), World War I (1914–18), Baltic War of Liberation (1918–20), Russian Civil War (1918–20), Russo-Polish War (1919–20), Rif War (1921–26), Chaco War (1932–35), Italo-Ethiopian War (1935–36), Spanish Civil War (1936–39), Sino-Japanese War (1937–45), Phony War (1939–40; no actual hostilities), Russo-Finnish War (1939–40), World War II (1939–45), Greek Civil War (1944–45; 1946–49), Arab-Israeli wars (1948–49; 1956; 1967; 1973; 1982), Korean War (1950–53), Algerian War (1954–62), Vietnam War (1954–75), Six-Day War (1967), War of Attrition (1969–70), Yom Kippur War (1973), Dirty War (1976–83), Afghan War (1978–92), Iran-Iraq War (1980–88), Falkland Islands War (1982), Persian Gulf War (1990–91), Bosnian conflict (1992–95), Kosovo conflict (1998–99)</code></pre>
+</div>
+</div>
+<p>The 36 wars in 19th century are the following:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Cape Frontier Wars (1779–1879), French revolutionary wars (1792–1801), War of the Oranges (1801), Tripolitan War (1801–05), Second Maratha War (1803–05), Third Maratha War (1817–18), Napoleonic Wars (1803–15), Black War (1804–30), Peninsular War (1808–14), War of 1812 (1812–15), Creek War (1813–14), War of Greek Independence (1821–32), Padri War (1821–37), Naning War (1831–32), Pastry War (1838–39), Mexican-American War (1846–48), Crimean War (1853–56), Bleeding Kansas (1854–59), American Civil War (1861–65), War of the Triple Alliance (1864/65–70), Seven Weeks’ War (1866), Selangor Civil War (1867–73), Franco-German War (1870–71), Acehnese War (1873–1904), Red River Indian War (1874–75), Serbo-Turkish War (1876–78), Anglo-Zulu War (1879), War of the Pacific (1879–83), Gun War (1880–81), Sino-French War (1883–85), Serbo-Bulgarian War (1885–86), Sino-Japanese War (1894–95), Spanish-American War (1898), Philippine-American War (1899–1902), South African War (1899–1902), The War of a Thousand Days (1899–1903)</code></pre>
+</div>
+</div>
+<p>In 18th century the list of wars counts the following 21 wars:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Cape Frontier Wars (1779–1879), French revolutionary wars (1792–1801), War of the Oranges (1801), Tripolitan War (1801–05), Second Maratha War (1803–05), Third Maratha War (1817–18), Napoleonic Wars (1803–15), Black War (1804–30), Peninsular War (1808–14), War of 1812 (1812–15), Creek War (1813–14), War of Greek Independence (1821–32), Padri War (1821–37), Naning War (1831–32), Pastry War (1838–39), Mexican-American War (1846–48), Crimean War (1853–56), Bleeding Kansas (1854–59), American Civil War (1861–65), War of the Triple Alliance (1864/65–70), Seven Weeks’ War (1866), Selangor Civil War (1867–73), Franco-German War (1870–71), Acehnese War (1873–1904), Red River Indian War (1874–75), Serbo-Turkish War (1876–78), Anglo-Zulu War (1879), War of the Pacific (1879–83), Gun War (1880–81), Sino-French War (1883–85), Serbo-Bulgarian War (1885–86), Sino-Japanese War (1894–95), Spanish-American War (1898), Philippine-American War (1899–1902), South African War (1899–1902), The War of a Thousand Days (1899–1903)</code></pre>
+</div>
+</div>
+<p>Exploring the <a href="https://brecke.inta.gatech.edu/research/conflict/">Conflict Catalog Data</a> made available by Peter Brecke of the Georgia Institute of Technology, it is possible to highlight also how much blood has been shed in history because of wars.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="war_trends_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Considering these data, the twentieth century counts more than 100 million victims of war, more than five times the previous century.</p>
+<p>The most bloody conflicts according to the dataset are reported in the table below.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-paper table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> name </th>
+   <th style="text-align:right;"> total_fatalities </th>
+   <th style="text-align:right;"> start_year </th>
+   <th style="text-align:right;"> end_year </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Japan, Germany-US,USSR,Britain, China,others, 1937-45 </td>
+   <td style="text-align:right;"> 40409000 </td>
+   <td style="text-align:right;"> 1937 </td>
+   <td style="text-align:right;"> 1945 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> First World War, 1914-18 </td>
+   <td style="text-align:right;"> 19617000 </td>
+   <td style="text-align:right;"> 1914 </td>
+   <td style="text-align:right;"> 1918 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Thirty Years' War, 1618-48 </td>
+   <td style="text-align:right;"> 8000000 </td>
+   <td style="text-align:right;"> 1618 </td>
+   <td style="text-align:right;"> 1648 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Germany (massacre of Jews), 1941-42 G </td>
+   <td style="text-align:right;"> 6000000 </td>
+   <td style="text-align:right;"> 1941 </td>
+   <td style="text-align:right;"> 1942 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Napoleonic Wars, 1803-15 </td>
+   <td style="text-align:right;"> 4425000 </td>
+   <td style="text-align:right;"> 1803 </td>
+   <td style="text-align:right;"> 1815 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> China, 1850-65 </td>
+   <td style="text-align:right;"> 2000000 </td>
+   <td style="text-align:right;"> 1850 </td>
+   <td style="text-align:right;"> 1865 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Spain (with intervention by Germany, Italy), 1936-39 </td>
+   <td style="text-align:right;"> 2000000 </td>
+   <td style="text-align:right;"> 1936 </td>
+   <td style="text-align:right;"> 1939 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Japan-China, 1937-45 </td>
+   <td style="text-align:right;"> 2000000 </td>
+   <td style="text-align:right;"> 1937 </td>
+   <td style="text-align:right;"> 1945 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Wars of the French Revolution, 1791-1802 </td>
+   <td style="text-align:right;"> 1915000 </td>
+   <td style="text-align:right;"> 1791 </td>
+   <td style="text-align:right;"> 1802 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> China, 1950-51 G </td>
+   <td style="text-align:right;"> 1900000 </td>
+   <td style="text-align:right;"> 1950 </td>
+   <td style="text-align:right;"> 1951 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Cambodia, 1975-79 G </td>
+   <td style="text-align:right;"> 1900000 </td>
+   <td style="text-align:right;"> 1975 </td>
+   <td style="text-align:right;"> 1979 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>The world wars of the 20th century are the bloodiest conflicts in history according to the Conflict Data Catalog. The relative total casualties are due to the increase in weapon power and the number of countries involved. Dr.&nbsp;Peter Brecke counts six million Jewish victims as an event other than World War II. The massacre of the Jews, also called the Holocaust or Shoah, alone ranks fourth among the bloodiest wars.</p>
+<p>The Thirty Years’ War, which ranks third, was one of the most destructive conflicts in European history, lasting from 1618 to 1648. Fought mainly in central Europe, it is estimated to have produced between 4.5 and 8 million of soldiers and civilians who died in battles, famine and disease. Some areas of what is now modern Germany experienced population declines of more than 50%.</p>
+<p>The longest conflicts in history from year 1400 according to the Conflict Catalog are reported in the following table.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-paper table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> name </th>
+   <th style="text-align:right;"> duration </th>
+   <th style="text-align:right;"> start_year </th>
+   <th style="text-align:right;"> end_year </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Netherlands-Spain, 1566-1609 </td>
+   <td style="text-align:right;"> 43 </td>
+   <td style="text-align:right;"> 1566 </td>
+   <td style="text-align:right;"> 1609 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Siam (revolution), 1647-88 </td>
+   <td style="text-align:right;"> 41 </td>
+   <td style="text-align:right;"> 1647 </td>
+   <td style="text-align:right;"> 1688 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Dahomey-tribes, 1818-58 </td>
+   <td style="text-align:right;"> 40 </td>
+   <td style="text-align:right;"> 1818 </td>
+   <td style="text-align:right;"> 1858 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> China (Qing)-Mongolia (Mongolia), 1594-1632 </td>
+   <td style="text-align:right;"> 38 </td>
+   <td style="text-align:right;"> 1594 </td>
+   <td style="text-align:right;"> 1632 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Russia-Crimean Tartars, 1540-72 </td>
+   <td style="text-align:right;"> 32 </td>
+   <td style="text-align:right;"> 1540 </td>
+   <td style="text-align:right;"> 1572 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Denmark-Holstein, Hanse towns (from 1426), 1404-35 </td>
+   <td style="text-align:right;"> 31 </td>
+   <td style="text-align:right;"> 1404 </td>
+   <td style="text-align:right;"> 1435 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Vietnam (peasant rebellion), 1771-1802 </td>
+   <td style="text-align:right;"> 31 </td>
+   <td style="text-align:right;"> 1771 </td>
+   <td style="text-align:right;"> 1802 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> England (dynastic, nobles), 1455-85 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 1455 </td>
+   <td style="text-align:right;"> 1485 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Thirty Years' War, 1618-48 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 1618 </td>
+   <td style="text-align:right;"> 1648 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> United Provinces-Java, 1650-80 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 1650 </td>
+   <td style="text-align:right;"> 1680 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sumatra (Malays vs. Padris), 1807-37 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 1807 </td>
+   <td style="text-align:right;"> 1837 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Ethiopia (Eritrea) (with Cuban intervention), 1961-91 </td>
+   <td style="text-align:right;"> 30 </td>
+   <td style="text-align:right;"> 1961 </td>
+   <td style="text-align:right;"> 1991 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>The first longest war reported, called Dutch Revolt (Dutch: Nederlandse Opstand), lasted 43 years. It was an armed conflict in which Dutch Republic, England, and France fouught against Spanish Empire</p>
+<p>The second one, with a duration of 41 years, is the Siam revolution leading to the ban of french influence from the country and an internal political change.</p>
+<p>The third position relates to a long war, 40 years, waged by the kingdom of Dahomey in Africa against neighboring tribes to sell the defeated enemies as slaves to Western slave traders.</p>
+<p>In order to check the preceding data sources, the Wikipedia page <a href="https://en.wikipedia.org/wiki/List_of_wars_by_death_toll">List of wars by death toll</a> has been scraped.</p>
+<p>This wiki page lists 23 ancient wars, 13 medieval wars, and 153 modern wars with over 25,000 casualties.</p>
+<p>Plotting a similar graph to the one made for the Conflict Catalog Data for the wiki list of wars, it is clear that the data is different in terms of wars and of casualties reported.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="war_trends_files/figure-html/wiki wars-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>According to wiki list of wars page in 19th century, the war death toll is around 180 millions fatalities.</p>
+<p>The most bloody wars, according to Wikipedia and reported in the table below, does not match with the data about wars provided by Peter Brecke.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-paper table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> war </th>
+   <th style="text-align:left;"> combatants </th>
+   <th style="text-align:left;"> date </th>
+   <th style="text-align:left;"> deathrange </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;width: 10em; "> World War II </td>
+   <td style="text-align:left;width: 12em; "> Allied powers vs. Axis Powers </td>
+   <td style="text-align:left;width: 4em; "> 1939–1945 </td>
+   <td style="text-align:left;width: 7em; "> 80000000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Taiping Rebellion </td>
+   <td style="text-align:left;width: 12em; "> Qing China vs. Taiping Heavenly Kingdom </td>
+   <td style="text-align:left;width: 4em; "> 1850–1864 </td>
+   <td style="text-align:left;width: 7em; "> 20000000–70000000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Three Kingdoms War </td>
+   <td style="text-align:left;width: 12em; "> Wei vs. Shu vs. Wu </td>
+   <td style="text-align:left;width: 4em; "> 184–280 </td>
+   <td style="text-align:left;width: 7em; "> 36000000–40000000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Mongol invasions and conquests </td>
+   <td style="text-align:left;width: 12em; "> Mongol Empire vs. Several Eurasian states </td>
+   <td style="text-align:left;width: 4em; "> 1206–1368 </td>
+   <td style="text-align:left;width: 7em; "> 30000000–40000000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> World War I </td>
+   <td style="text-align:left;width: 12em; "> Allied Powers vs. Central Powers </td>
+   <td style="text-align:left;width: 4em; "> 1914–1918 </td>
+   <td style="text-align:left;width: 7em; "> 16000000–40000000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Transition from Ming to Qing </td>
+   <td style="text-align:left;width: 12em; "> Qing China vs. Ming China vs. Shun dynasty China (Li Zicheng) vs. Xi dynasty China (Zhang Xianzhong vs. Kingdom of Shu (She-An Rebellion) vs. Evenk-Daur federation (Bombogor) </td>
+   <td style="text-align:left;width: 4em; "> 1616–1683 </td>
+   <td style="text-align:left;width: 7em; "> 25000000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> An Lushan Rebellion </td>
+   <td style="text-align:left;width: 12em; "> Tang dynasty China and Islamic Empire vs. Yan state </td>
+   <td style="text-align:left;width: 4em; "> 755–763 </td>
+   <td style="text-align:left;width: 7em; "> 13000000–36000000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Spanish conquest of the Aztec Empire </td>
+   <td style="text-align:left;width: 12em; "> Spanish Empire vs. Aztec Empire </td>
+   <td style="text-align:left;width: 4em; "> 1519–1632 </td>
+   <td style="text-align:left;width: 7em; "> 24300000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Second Sino-Japanese War </td>
+   <td style="text-align:left;width: 12em; "> Republic of China and allies vs. Japan </td>
+   <td style="text-align:left;width: 4em; "> 1937–1945 </td>
+   <td style="text-align:left;width: 7em; "> 20000000–25000000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Conquests of Timur </td>
+   <td style="text-align:left;width: 12em; "> Timurid Empire vs. several middle eastern states </td>
+   <td style="text-align:left;width: 4em; "> 1370–1405 </td>
+   <td style="text-align:left;width: 7em; "> 8000000–20000000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Dungan Revolt </td>
+   <td style="text-align:left;width: 12em; "> Qing China vs. Hui vs. Kashgaria </td>
+   <td style="text-align:left;width: 4em; "> 1862–1877 </td>
+   <td style="text-align:left;width: 7em; "> 8000000–20000000 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>The first war in this infamous ranking is still World War II but the death toll reported is doubled reaching 80 millions of fatalities.</p>
+<p>The second and third positions are covered by two wars that took place in China at different times.</p>
+<p>The Taiping Rebellion was a revolt lasting from 1850 to 1864 against the Qing dynasty in China supported by religious beliefs and motivated by harsh economic conditions. The Taiping forces were run as a cult-like group called the God Worshiping Society by self-proclaimed prophet Hong Xiuquan. The rebels held the city of Nanjing for a decade. However, the Taiping Rebellion ultimately failed and led to the deaths of over 20 million people.</p>
+<p>The War of the Three Kingdoms was a period of conflict between the Wei, Shu, and Wu kingdoms of ancient China that lasted nearly a hundred years starting in 184 after the fall of the Han empire. It was celebrated in the famous novel <em>Romance of the Three Kingdoms</em>.</p>
+<p>Also the war ranking by duration extracted from Wikipedia is different from the top ten coming from the Conflict Catalog data.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-paper table table-striped" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> war </th>
+   <th style="text-align:left;"> combatants </th>
+   <th style="text-align:left;"> date </th>
+   <th style="text-align:right;"> duration </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Reconquista </td>
+   <td style="text-align:left;width: 12em; "> Spanish and Portuguese Christian states vs. Spanish and Portuguese Muslim states </td>
+   <td style="text-align:left;width: 6em; "> 711–1492 </td>
+   <td style="text-align:right;width: 3em; "> 781 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Arab–Byzantine Wars </td>
+   <td style="text-align:left;width: 12em; "> Byzantine Empire and allies vs. Islamic Empire and allies </td>
+   <td style="text-align:left;width: 6em; "> 629–1050 </td>
+   <td style="text-align:right;width: 3em; "> 421 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Chinese Warring States </td>
+   <td style="text-align:left;width: 12em; "> Seven great powers of China </td>
+   <td style="text-align:left;width: 6em; "> c. 475 BC - 221 BC </td>
+   <td style="text-align:right;width: 3em; "> 254 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Arauco War </td>
+   <td style="text-align:left;width: 12em; "> Spanish Empire vs. Mapuches </td>
+   <td style="text-align:left;width: 6em; "> 1550–1790 </td>
+   <td style="text-align:right;width: 3em; "> 240 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Crusades </td>
+   <td style="text-align:left;width: 12em; "> Originally Byzantine Empire vs. Seljuq Empire, but evolved into Christians vs. Muslims. </td>
+   <td style="text-align:left;width: 6em; "> 1095–1291 </td>
+   <td style="text-align:right;width: 3em; "> 196 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Mongol invasions and conquests </td>
+   <td style="text-align:left;width: 12em; "> Mongol Empire vs. Several Eurasian states </td>
+   <td style="text-align:left;width: 6em; "> 1206–1368 </td>
+   <td style="text-align:right;width: 3em; "> 162 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Wars of the Sixteen Kingdoms </td>
+   <td style="text-align:left;width: 12em; "> Northern Chinese States </td>
+   <td style="text-align:left;width: 6em; "> 304–439 </td>
+   <td style="text-align:right;width: 3em; "> 135 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Punic Wars </td>
+   <td style="text-align:left;width: 12em; "> Roman Republic vs. Carthaginian Empire </td>
+   <td style="text-align:left;width: 6em; "> 264 BC–146 BC </td>
+   <td style="text-align:right;width: 3em; "> 118 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Hundred Years' War </td>
+   <td style="text-align:left;width: 12em; "> House of Valois vs. House of Plantagenet </td>
+   <td style="text-align:left;width: 6em; "> 1337–1453 </td>
+   <td style="text-align:right;width: 3em; "> 116 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;width: 10em; "> Spanish conquest of the Aztec Empire </td>
+   <td style="text-align:left;width: 12em; "> Spanish Empire vs. Aztec Empire </td>
+   <td style="text-align:left;width: 6em; "> 1519–1632 </td>
+   <td style="text-align:right;width: 3em; "> 113 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>The Reconquista, the war to drive the Moors out of Spain and Portugal, lasted nearly eight centuries while four centuries of conflict pitted the Byzantine Empire against the Islamic Empire in a series of wars.</p>
+<p>The Warring States Period was an era in ancient Chinese history characterized by warfare that lasted two and a half centuries.</p>
+<p>Following the analysis of these three sources of data, recognizing their relative inconsistency, the first two simple conclusions relating to war are confirmed: war has always been present in the history of humanity regardless of the geographical region and has always produced a certain number of victims .</p>
+</section>
+<section id="military-expenditure" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="military-expenditure"><span class="header-section-number">1.2</span> military expenditure</h2>
+<p>In order to validate the claim that all countries in the world spend on their own defense, the <a href="https://www.sipri.org/databases/milex/sources-and-%20methods">SIPRI military spending database</a> was explored.</p>
+<p>The Stockholm International Peace Research Institute, SIPRI, is an independent international institute dedicated to research on conflict, armaments, arms control and disarmament and maintains a data set called SIPRI-Milex-data containing information on military spending worldwide over the last years.</p>
+<p>Specifically, the analysis is focused on the following three datasets:<br>
+</p>
+<ul>
+<li><p><em>Regional totals</em>, reporting military spending by continental region in billion dollars from 1988 to 2022 at constant 2021 prices and exchange rates, except for the last figure which is reported at 2022 prices and exchange rates;</p></li>
+<li><p><em>Constant (2021) US$</em>, which reports military spending by country in million dollars from 1988 to 2022 at constant 2021 prices and exchange rates;</p></li>
+<li><p><em>Share of Govt. expenditure</em>, reporting military expenditure expressed as a percentage of public administration expenditure.</p></li>
+</ul>
+<p>Using the second and third dataset, <em>Constant (2021) US$</em> and <em>Share of Govt. expenditure</em>, the two histograms below show the distribution of national military spending in 2022 both as an absolute value in dollars (on a logarithmic scale) and as a share of total public spending.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="war_trends_files/figure-html/histograms of milex-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="war_trends_files/figure-html/histograms of milex-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>On average the military expenditure all over the world according to SIPRI has been of 13949 million dollars and in share of government spending of 6.41%.<br>
+But interesting things happen at extremes.<br>
+Observing the graph of the distribution of spending in dollars, it can be seen that the values of China, about 298 billion dollars, and the United States, about 811 billion dollars, seem real outliers, values outside the distribution valid for the other countries considering a,lso that the histogram is in log scale. At the other extreme, Costa Rica, Iceland and Panama has no military expenditure reported while Venezuela spent 4.7 million dollars.</p>
+<p>Considering instead the military expenditures as a ratio of the overall government expenditure, the values that seems not in the same distribution of other countries are related to: Somalia (20.37%), Qatar (23.84%), Saudi Arabia (27.79%) and Belarus (32.12%).</p>
+<p>At the lower extreme, in 2022 only Haiti, Honduras, Mauritius, Moldova spent less than 1% of the overall government spending.</p>
+<p>Exploring the <em>regional totals</em> dataset, it is possible to highlight that in last 20 years the military expenditure has grown all over the world.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="war_trends_files/figure-html/arms race world-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="war_trends_files/figure-html/arms race world-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>In just over twenty years, global military spending has grown from about <span class="math inline">\(1,200\)</span> billion dollars to about $2,182 billion dollars. Impressive isn’t it?<br>
+The region that has spent the most is America led by the United States: its military spending trend stalled in the years around 2010 to decrease slightly until 2016 and then recover from 2017 to 2022. Asia shows a clear constant growth trend of military spending. Europe has maintained consistently high military spending, which appears to be growing fastest in recent years. After an initial period of growth, since around 2015 the Middle East appears to have stabilized its military spending. Africa cannot economically afford a high expense.</p>
+<p>In order to detect not only for the presence of a growing trend but also for a pattern of arms race, two geopolitical scenarios were analyzed: the major world powers and the Middle East.</p>
+<p>The arms race pattern is defined as the competitive acquisition of military capabilities between two or more nations although in a broad sense it can be understood as a growing trend.</p>
+<p>The first analysis concerns some countries among the world powers: China, India, Russia and the United States of America. For each country, military spending from year 2000 to 2022 was traced over time both in absolute value, using <em>Constant (2021) US$</em> datase, and as a share of government spending using the data from <em>Share of Govt. expenditure</em> dataset.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="war_trends_files/figure-html/arms race big powers-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="war_trends_files/figure-html/arms race big powers-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>The United States spends an incomparable amount of resources on armaments compared to other world powers. As reported in the SIPRI database, US maximum spending was approximately 917 billion dollars in 2010 compared to China’s 298 in 2022, Russia’s 77 in 2016 and India’s 81 in 2022. The US government’s considerable spending on arms does not appear to be a direct reaction to spending by other nations. Instead, it could be a phenomenon due both to the events linked to the consequences of 11 September 2001 and to the weight and importance of the US military apparatus.</p>
+<p>In the SIPRI data on military spending in relation to total government spending, data from the United States of America is missing, so no clear pattern of arms race can be detected. China’s military spending effort has been declining for the past two decades, India’s appears to be declining slightly while Russia’s effort peaks around 2016. In 2022 Russia spent 10.35% of its global government spending, China 4.79% and India 8.26%.</p>
+<p>The second analysis concerns some Middle Eastern countries with different political and economic characteristics, namely Saudi Arabia, Egypt, Iran, Israel and Lebanon. As for the world powers, the graphs of the trend of military spending from year 2000 to 2022 are presented both in billions of dollars and as a share of overall government spending.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="war_trends_files/figure-html/arms race middle east-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="war_trends_files/figure-html/arms race middle east-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>Over the last twenty years, Saudi Arabia has spent between 22 and 32% of its global spending on armaments, reaching an expenditure of even more than 94 billion dollars in 2015. The military spending high ratio in Saudi Arabia has been possible since the government is a kingdom without relevant economical and political constraint.<br>
+Israel, which is continually threatened by neighboring countries, has in the last twenty years limited its military expenditure to within 15% of global spending, spending slightly more than 23 billion dollars in 2022. Egypt has steadily decreased its military spending effort starting from about 10% till slightly more than 4% of its overall spending while the spending in dollars remains almost constant reaching 5 billion dollars in 2022.<br>
+Iran military spending during last years has from 13 to 17% in 2022. In absolute value last year Iran spent 5,639.7 million dollars. Lebanon growing trend in military expenditure has been cut off in 2019 due to its economic crisis.<br>
+</p>
+</section>
+<section id="key-takeways" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="key-takeways"><span class="header-section-number">1.3</span> key takeways</h2>
+<p>As the first principle of data science states, data without context is information, not knowledge. Likewise, facts are not history unless they are organized in their context and over time in a way that can be explained.</p>
+<p>In this sense, the synthetic analysis carried out on historical data is very lacking, but nevertheless allows for some general considerations.</p>
+<p>Given the differences between the datasets of wars in history analyzed, it is difficult to draw specific conclusions about any historical trends. But it can certainly be said that the history of every region of the world can tell how much destruction and death wars have caused. The twentieth century certainly seems to be the bloodiest among centuries probably for two reasons: the availability of more accurate historical data and the unthinkable growth in the power of weapons.</p>
+<p>The analysis of the expenditure of modern states on armaments indicates that the possibility of getting involved in war is perceived as real. The amount of arms spending does not appear to follow an arms race pattern in the strict sense in the proposed scenarios, probably due to numerous domestic economic and political constraints. But the global growth in military spending over the past two decades is astounding.</p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+computation with R
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In order to learn how to explore data with R see <span class="citation" data-cites="R4DS">Hadley Wickham, Grolemund, and Centinkaya-Rundel (<a href="references.html#ref-R4DS" role="doc-biblioref">2023</a>)</span>.</p>
+<p>For this chapter the following R packages have been used:<br>
+</p>
+<ul>
+<li><p><em>rvest</em> by <span class="citation" data-cites="rvest">Hadley (rvest) Wickham (<a href="references.html#ref-rvest" role="doc-biblioref">2022</a>)</span> for scraping both wikipedia and Encyclopedia Britanica list of wars;</p></li>
+<li><p><em>purrr</em> by <span class="citation" data-cites="purrr">Hadley Wickham and Henry (<a href="references.html#ref-purrr" role="doc-biblioref">2023</a>)</span> for applying functions to data;</p></li>
+<li><p><em>readxl</em> by <span class="citation" data-cites="readxl">Hadley Wickham and Bryan (<a href="references.html#ref-readxl" role="doc-biblioref">2023</a>)</span> for loading into R the Conflict Catalog Data in excel format;</p></li>
+<li><p><em>janitor</em> by <span class="citation" data-cites="janitor">Firke (<a href="references.html#ref-janitor" role="doc-biblioref">2023</a>)</span> for data cleaning;</p></li>
+<li><p><em>dplyr</em> by <span class="citation" data-cites="dplyr">Hadley Wickham et al. (<a href="references.html#ref-dplyr" role="doc-biblioref">2023</a>)</span> and <em>tidyr</em> by <span class="citation" data-cites="tidyr">Hadley Wickham, Vaughan, and Girlich (<a href="references.html#ref-tidyr" role="doc-biblioref">2023</a>)</span> for data manipulation;</p></li>
+<li><p><em>stringr</em> by <span class="citation" data-cites="stringr">Hadley (stringr) Wickham (<a href="references.html#ref-stringr" role="doc-biblioref">2022</a>)</span> for processing text data;</p></li>
+<li><p><em>kableExtra</em> by Hao <span class="citation" data-cites="kableExtra2021">Zhu (<a href="references.html#ref-kableExtra2021" role="doc-biblioref">2021</a>)</span> for visualizing tables;</p></li>
+<li><p><em>ggplot2</em> by <span class="citation" data-cites="wickham2016">Hadley Wickham (<a href="references.html#ref-wickham2016" role="doc-biblioref">2016</a>)</span>, <em>ggthemes</em> by <span class="citation" data-cites="ggthemes">Arnold (<a href="references.html#ref-ggthemes" role="doc-biblioref">2021</a>)</span>, <em>ggrepel</em> by <span class="citation" data-cites="ggrepel">Slowikowski (<a href="references.html#ref-ggrepel" role="doc-biblioref">2023</a>)</span> and <em>scales</em> by <span class="citation" data-cites="scales">Hadley Wickham and Seidel (<a href="references.html#ref-scales" role="doc-biblioref">2022</a>)</span> for infographics.</p></li>
+</ul>
+</div>
+</div>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-ggthemes" class="csl-entry" role="doc-biblioentry">
+Arnold, Jeffrey B. 2021. <em>Ggthemes: Extra Themes, Scales and Geoms for ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggthemes">https://CRAN.R-project.org/package=ggthemes</a>.
+</div>
+<div id="ref-janitor" class="csl-entry" role="doc-biblioentry">
+Firke, Sam. 2023. <em>Janitor: Simple Tools for Examining and Cleaning Dirty Data</em>. <a href="https://CRAN.R-project.org/package=janitor">https://CRAN.R-project.org/package=janitor</a>.
+</div>
+<div id="ref-pinker2012" class="csl-entry" role="doc-biblioentry">
+Pinker, Steven. 2012. <em>The Better Angels of Our Nature: Why Violence Has Declined</em>. Penguin Books Ltd.
+</div>
+<div id="ref-ggrepel" class="csl-entry" role="doc-biblioentry">
+Slowikowski, Kamil. 2023. <em>Ggrepel: Automatically Position Non-Overlapping Text Labels with ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=ggrepel">https://CRAN.R-project.org/package=ggrepel</a>.
+</div>
+<div id="ref-cirillo_taleb2016" class="csl-entry" role="doc-biblioentry">
+Taleb, Nassim Nicholas, and Pasquale Cirillo. 2016. <span>“The Decline of Violent Conflicts: What Do the Data Really Say?”</span> <em>NYU Tandon Research Paper No. 2876315</em>.
+</div>
+<div id="ref-wickham2016" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-rvest" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley (rvest). 2022. <em>Rvest: Easily Harvest (Scrape) Web Pages</em>. <a href="https://CRAN.R-project.org/package=rvest">https://CRAN.R-project.org/package=rvest</a>.
+</div>
+<div id="ref-stringr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley (stringr). 2022. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr">https://CRAN.R-project.org/package=stringr</a>.
+</div>
+<div id="ref-readxl" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Jennifer Bryan. 2023. <em>Readxl: Read Excel Files</em>. <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>.
+</div>
+<div id="ref-dplyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+</div>
+<div id="ref-R4DS" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Garrett Grolemund, and Mine Centinkaya-Rundel. 2023. <em>R for Data SCience</em>. O’Reilly. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
+</div>
+<div id="ref-purrr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Lionel Henry. 2023. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.
+</div>
+<div id="ref-scales" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Dana Seidel. 2022. <em>Scales: Scale Functions for Visualization</em>. <a href="https://CRAN.R-project.org/package=scales">https://CRAN.R-project.org/package=scales</a>.
+</div>
+<div id="ref-tidyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Davis Vaughan, and Maximilian Girlich. 2023. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
+</div>
+<div id="ref-kableExtra2021" class="csl-entry" role="doc-biblioentry">
+Zhu, Hao. 2021. <em>kableExtra: Construct Complex Table with ’Kable’ and Pipe Syntax</em>. <a href="https://CRAN.R-project.org/package=kableExtra">https://CRAN.R-project.org/package=kableExtra</a>.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

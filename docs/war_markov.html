@@ -21,6 +21,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -71,6 +90,10 @@ gtag('js', new Date());
 gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 </script>
 
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -170,7 +193,25 @@ gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#markov-chains" id="toc-markov-chains" class="nav-link active" data-scroll-target="#markov-chains"><span class="toc-section-number">3.1</span>  markov chains</a></li>
+  <li><a href="#will-there-be-war" id="toc-will-there-be-war" class="nav-link" data-scroll-target="#will-there-be-war"><span class="toc-section-number">3.2</span>  will there be war?</a>
+  <ul class="collapse">
+  <li><a href="#markov-chain-model" id="toc-markov-chain-model" class="nav-link" data-scroll-target="#markov-chain-model"><span class="toc-section-number">3.2.1</span>  markov chain model</a></li>
+  <li><a href="#a-peaceful-nation" id="toc-a-peaceful-nation" class="nav-link" data-scroll-target="#a-peaceful-nation"><span class="toc-section-number">3.2.2</span>  a peaceful nation</a></li>
+  <li><a href="#a-nation-at-risk-of-war" id="toc-a-nation-at-risk-of-war" class="nav-link" data-scroll-target="#a-nation-at-risk-of-war"><span class="toc-section-number">3.2.3</span>  a nation at risk of war</a></li>
+  </ul></li>
+  <li><a href="#will-there-be-peace-again" id="toc-will-there-be-peace-again" class="nav-link" data-scroll-target="#will-there-be-peace-again"><span class="toc-section-number">3.3</span>  will there be peace again?</a>
+  <ul class="collapse">
+  <li><a href="#markov-chain-model-1" id="toc-markov-chain-model-1" class="nav-link" data-scroll-target="#markov-chain-model-1"><span class="toc-section-number">3.3.1</span>  markov chain model</a></li>
+  <li><a href="#a-war-evolving-situation" id="toc-a-war-evolving-situation" class="nav-link" data-scroll-target="#a-war-evolving-situation"><span class="toc-section-number">3.3.2</span>  a war evolving situation</a></li>
+  </ul></li>
+  <li><a href="#key-takeways" id="toc-key-takeways" class="nav-link" data-scroll-target="#key-takeways"><span class="toc-section-number">3.4</span>  key takeways</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -192,8 +233,399 @@ gtag('config', 'G-BRLVLRZ5S9', { 'anonymize_ip': true});
 
 </header>
 
+<blockquote class="blockquote">
+<p>“<em>Only the dead have seen the end of war.</em>”<br>
+Plato</p>
+</blockquote>
+<p>The previous chapter focused on approaching warfare in terms of strategy by applying game theory, this chapter introduces an approach based on probabilities and stochastic processes.<br>
+To underline the importance of considering uncertainty Voltaire said: “<em>Doubt is not a pleasant condition, but certainty is absurd.</em>”<br>
+In a world where every moment is determined by an infinitely complex set of factors, probabilistic thinking helps identify the most probable outcomes and thus improve the accuracy and effectiveness of decisions.<br>
+Since warfare involves events that unfold over time, process-based probabilistic models are better suited for thinking about warfare. Stochastic processes can be defined as any process that describes the evolution of a random phenomenon over time or, more precisely, as any sequence of states in which the transitions through these states at any stage depend on chance.</p>
+<p>In the remainder of this chapter, Markov chains will be used to model and analyze both the probabilities of a nation going to war and the probabilities of how the war itself could evolve.</p>
+<section id="markov-chains" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="markov-chains"><span class="header-section-number">3.1</span> markov chains</h2>
+<p>A Markov process is a stochastic process in which:</p>
+<ul>
+<li><p>the set of possible states is finite;</p></li>
+<li><p>the transition probability in a state depends only on the present state: this is the so-called Markov property which states that “the future is independent from the past given the present”;</p></li>
+<li><p>the transition probabilities are constant over time.</p></li>
+</ul>
+<p>From a mathematical point of view, Markov chain theory is a clever combination of probability theory and linear algebra that is used to model a real-world system that is in discrete states, but it is not entirely clear how has evolved.</p>
+<p>Thus the real-world system is modeled as a sequence of states that over time moves between states with a specific probability. Since the states are connected to each other, they form a chain.</p>
+<p>Markov chains are used in a variety of situations because they can be designed to model many real-world processes. These areas range from animal population mapping to search engine algorithms, music composition and speech recognition.</p>
+<p>Markov chains are exhaustively defined by a set of states and a transition probability matrix between them. If the Markov chain has <span class="math inline">\(n\)</span> possible states, the matrix will be a square matrix <span class="math inline">\(n \cdot n\)</span>, such that the element <span class="math inline">\((i, j)\)</span> is the transition probability from state <span class="math inline">\(i\)</span> to state <span class="math inline">\(j\)</span>.<br>
+Also, the transition matrix must be a stochastic matrix, one whose entries in each row must sum to exactly 1. Similarly if the Markov chain is represented by drawing a transition state diagram, the probabilities of the transition arrows coming out from a node, or state, add up to one.</p>
+<p>To initialize a Markov chain an initial state vector <span class="math inline">\(n \cdot 1\)</span> is defined in order to describe the starting probability distribution for each of the possible <span class="math inline">\(n\)</span> states. The <span class="math inline">\(i\)</span> entry of the vector describes the probability that the chain starts at state <span class="math inline">\(i\)</span>.</p>
+<p>To obtain the multi-step transition probability, the one-step transition matrix is multiplied by itself by the number of necessary transitions. In other words, the transition probability of arriving at state <span class="math inline">\(j\)</span> from state <span class="math inline">\(i\)</span> after <span class="math inline">\(n\)</span> steps is indicated by the position <span class="math inline">\(i,j\)</span> of the transition matrix to the nth power.</p>
+<p>The stationary distribution represents the distribution of states for a long-term Markov process i.e.&nbsp;as the number of steps or transitions increases. A stationary distribution of a Markov chain is a probability distribution that remains unchanged after some transition period. Typically, it is represented as a row vector <span class="math inline">\(π\)</span> whose entries are probabilities that add to 1, and given the transition matrix <span class="math inline">\(P\)</span>, it satisfies <span class="math inline">\(π=π \cdot P\)</span>. The stationary distribution provides information on the stability of the random process and, in some cases, describes the limiting behavior of the Markov chain.</p>
+<p>Andrey Markov, the Russian mathematician who first studied this type of stochastic process, was able to prove that, as long as all states in the chain can be reached (irreducibility), the probability to be in a particular state will converge to a single constant value in the long run.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+exploring further
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For an in-depth introduction to markov chains and stochastic processes, one can refer to <span class="citation" data-cites="tijms2003">Tijms (<a href="references.html#ref-tijms2003" role="doc-biblioref">2003</a>)</span>, <span class="citation" data-cites="kulkarni2009">Kulkarni (<a href="references.html#ref-kulkarni2009" role="doc-biblioref">2009</a>)</span> and <span class="citation" data-cites="pinsky_karlin2011">Pinsky and Karlin (<a href="references.html#ref-pinsky_karlin2011" role="doc-biblioref">2011</a>)</span>.</p>
+</div>
+</div>
+</section>
+<section id="will-there-be-war" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="will-there-be-war"><span class="header-section-number">3.2</span> will there be war?</h2>
+<p>A nation can enjoy a long period of peace or face war depending on many factors including its geopolitical position, its alliances and the presence on its territory of goods of interest to other countries. It has been seen in history that the transition from peace to war can be triggered by a sudden and uncontrollable conflict or have deep roots, while the transition from war to peace is usually long and difficult but there is always an opportunity for peace as well.</p>
+<section id="markov-chain-model" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="markov-chain-model"><span class="header-section-number">3.2.1</span> markov chain model</h3>
+<p>This real world situation can be modeled with a markov chain process with only two states:</p>
+<ul>
+<li><p><em>peace</em>, in this state the modeled nation is in peace with other countries;</p></li>
+<li><p><em>war</em>, on the contrary in this state nation is fighting with other countries.</p></li>
+</ul>
+<div class="cell">
+
+</div>
+<p>The hypothetical nation, if in a peaceful state, can remain in peace or can go to war and while in war can keep on fighting or make peace. The state transition diagram representing the markov chain model is displayed below.</p>
+<div class="border">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="war_markov_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>Such a Markov chain in which every state can be reached from every other state is said to be strongly connected or irreducible, and such a structure is the condition for the existence of a unique stationary distribution.</p>
+<p>To complete the Markov chain model it is necessary to define the transition probability matrix. Two different situations are considered:<br>
+</p>
+<ul>
+<li><p>a peaceful nation;<br>
+</p></li>
+<li><p>a nation at risk of war.</p></li>
+</ul>
+</section>
+<section id="a-peaceful-nation" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="a-peaceful-nation"><span class="header-section-number">3.2.2</span> a peaceful nation</h3>
+<p>Suppose the hypothetical nation is in a peaceful area where neighboring nations are also peaceful, it has good international relations with every country and no history of recent conflicts. In such a situation the probability of remaining in a peaceful state could be 0.98, and then going to war could be only 0.02. In war the probability of continuing to fight could be 0.65 and then achieving peace the probability should go up to 0.35. Note that the transition probabilities have been assigned completely arbitrarily for demonstration purpose only. The probability transition matrix below describes this model.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-material" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1"></th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #eee; padding-bottom: 16px; padding-top: 16px; height: 56px;">to</div></th>
+</tr>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> peace </th>
+   <th style="text-align:right;"> war </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="2"><td colspan="3" style="border-bottom: 1px solid #eee; "><strong>from</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> peace </td>
+   <td style="text-align:right;"> 0.98 </td>
+   <td style="text-align:right;"> 0.02 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> war </td>
+   <td style="text-align:right;"> 0.35 </td>
+   <td style="text-align:right;"> 0.65 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Starting from a peace state, initial state vector with probability 1 of peace and probability 0 of war, the chances will evolve following the graph below.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="war_markov_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In this case probabilities to enter war increase very slightly reaching the stationary distribution represented as in the table below.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-material-dark" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> peace </th>
+   <th style="text-align:center;"> war </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> steady state probabilities </td>
+   <td style="text-align:center;"> 0.9459459 </td>
+   <td style="text-align:center;"> 0.0540541 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>A hypothetical peaceful nation maintains high probabilities of being at peace within a strongly connected two-state Markov chain model. Yet over time the probability of being in a peaceful state has decreased somewhat.</p>
+</section>
+<section id="a-nation-at-risk-of-war" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="a-nation-at-risk-of-war"><span class="header-section-number">3.2.3</span> a nation at risk of war</h3>
+<p>The model presented in this section assumes that the hypothetical nation is in a turbulent area where some neighboring nations are at war, it has a difficult international relationship with some neighboring countries and a history of recent conflicts. In such a situation the probability of remaining in a peaceful state could be 0.74, and therefore the probability of going to war could be 0.26, In war the probability of continuing to fight could be 0.85 and therefore the probability of achieving peace should be 0.15. Note that, also in this case, the transition probabilities have been assigned completely arbitrarily for demonstration purpose only. The probability transition matrix below describes this model.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-material" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1"></th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #eee; padding-bottom: 16px; padding-top: 16px; height: 56px;">to</div></th>
+</tr>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> peace </th>
+   <th style="text-align:right;"> war </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="2"><td colspan="3" style="border-bottom: 1px solid #eee; "><strong>from</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> peace </td>
+   <td style="text-align:right;"> 0.74 </td>
+   <td style="text-align:right;"> 0.26 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> war </td>
+   <td style="text-align:right;"> 0.15 </td>
+   <td style="text-align:right;"> 0.85 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Starting from a peace state the probabilities will evolve following the graph below.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="war_markov_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>After only three time steps, say years, the hypothetical nation would have same probability to find itself in war or in peace. And then war probabilities continue to increase reaching the stationary distribution represented as in the table below.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-material-dark" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> peace </th>
+   <th style="text-align:center;"> war </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> steady state probabilities </td>
+   <td style="text-align:center;"> 0.3658537 </td>
+   <td style="text-align:center;"> 0.6341463 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>In the long run a hypothetical nation at risk of war will see the odds of being at war increase a lot considering a fully connected two-states Markov chain.</p>
+</section>
+</section>
+<section id="will-there-be-peace-again" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="will-there-be-peace-again"><span class="header-section-number">3.3</span> will there be peace again?</h2>
+<p>In this section, war itself and its possible states in the course of its evolution are modeled.<br>
+In a certain period war can be harsh and require a high cost in terms of human lives, civilians and soldiers, and of military and economic resources. Later the situation can become even more difficult both because the war can be extended to other countries and because unconventional weapons can be used. It is possible, on the contrary, that the war enters a state of greater calm in which the fighting subsides. This de-escalation phase can then eventually lead to the initiation of peace talks between enemies and the establishment of truces on battlefronts.</p>
+<section id="markov-chain-model-1" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="markov-chain-model-1"><span class="header-section-number">3.3.1</span> markov chain model</h3>
+<p>This war evolution can be modeled as a markov chain with only four states:</p>
+<ul>
+<li><p><strong>war escalation</strong> meaning more arms, more battles, more destruction and casualties;</p></li>
+<li><p><strong>war de-escalation</strong> meaning, on the contrary, no new arms, less battles, less destruction and casualties;</p></li>
+<li><p><strong>truce</strong> means truce on battlefronts, peace talks and possibly a ceasefire agreement;</p></li>
+<li><p><strong>war expansion</strong> meaning that other nations enters directly in fights leading to a potential regional or world war and / or that opponents starts using non conventional weapons including chemical, biological or nuclear weapons.</p></li>
+</ul>
+<p>The war can evolve in almost any direction excluding going:<br>
+</p>
+<ul>
+<li><p>from war escalation state directly to a truce phase;<br>
+</p></li>
+<li><p>from war de escalation state directly to war expansion;<br>
+</p></li>
+<li><p>from war expansion state directly to a truce phase;&nbsp;</p></li>
+<li><p>from truce state directly to war expansion.</p></li>
+</ul>
+<p>However, the chain remains irreducible since from any state it is possible to reach any other state even if not necessarily in one step.</p>
+<p>The following state transition diagram fully describes the Markov chain.</p>
+<div class="border">
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="war_markov_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="a-war-evolving-situation" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="a-war-evolving-situation"><span class="header-section-number">3.3.2</span> a war evolving situation</h3>
+<p>The situation to be modeled relates to a war in a turbulent region where the enemies have strong alliances. and are determined to achieve their goals through warfare. In this condition the transition probabilities could be represented by the following transition probability matrix.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-material" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1"></th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4"><div style="border-bottom: 1px solid #eee; padding-bottom: 16px; padding-top: 16px; height: 56px;">to</div></th>
+</tr>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> escalation </th>
+   <th style="text-align:right;"> de-escalation </th>
+   <th style="text-align:right;"> truce </th>
+   <th style="text-align:right;"> expansion </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="4"><td colspan="5" style="border-bottom: 1px solid #eee; "><strong>from</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> escalation </td>
+   <td style="text-align:right;"> 0.90 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.0 </td>
+   <td style="text-align:right;"> 0.05 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> de-escalation </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.65 </td>
+   <td style="text-align:right;"> 0.1 </td>
+   <td style="text-align:right;"> 0.00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> truce </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.25 </td>
+   <td style="text-align:right;"> 0.7 </td>
+   <td style="text-align:right;"> 0.00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> expansion </td>
+   <td style="text-align:right;"> 0.08 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.0 </td>
+   <td style="text-align:right;"> 0.90 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>If the war is in a state of escalation, it has a 0.90 chance of remaining in this state and only a 0.05 chance of reducing or expanding the war. On the other hand, there is no possibility of entering a state of truce. If the war is in a state of escalation, the odds are 0.65 of remaining in this state, 0.25 of entering a state of escalation of war, and 0.10 of initiating a state of truce. Starting from a state of truce it is not possible to move to a war expansion while the probability of remaining in a truce is 0.70, the probability of entering a state of de-escalation is 0.25 and of moving to a state of escalation is 0.05. If the war is expanding, it cannot go into truce but escalate with probability 0.08 or de-escalate with probability 0.02. Note that, as with previous models, the transition probabilities have been assigned completely arbitrarily for demonstration purposes only.</p>
+<p>The following graph shows the probabilities evolution computed with linear algebra.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="war_markov_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>After 25 steps, say months, war probabilities are very stable and near the stationary distribution represented as in the table below.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class=" lightable-material-dark" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> escalation </th>
+   <th style="text-align:center;"> de-escalation </th>
+   <th style="text-align:center;"> truce </th>
+   <th style="text-align:center;"> expansion </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> steady state probabilities </td>
+   <td style="text-align:center;"> 0.56 </td>
+   <td style="text-align:center;"> 0.12 </td>
+   <td style="text-align:center;"> 0.04 </td>
+   <td style="text-align:center;"> 0.28 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>In the long run given the constant probability transition matrix for the modeled situation, be in a war escalation state has still the greater probability. The second probable state is war expansion. Truce reach no more than 0.05 probability.</p>
+</section>
+</section>
+<section id="key-takeways" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="key-takeways"><span class="header-section-number">3.4</span> key takeways</h2>
+<p>Reasoning about war using a Markov chain helps to understand the stochastic process, i.e.&nbsp;how probabilities evolve.</p>
+<p>The Markov chain models described above, although simple and subject to Markov limitations (being memoryless and having transition probabilities constant of one step), show that in a connected chain the probabilities of being in a state do not remain constant over time until they reach their stationary distribution.</p>
+<p>In both models presented, the chances of things getting even worse increase over time. This is not that relevant as the models have been set up completely fictitiously.</p>
+<p>The point to underline is that it is not enough to estimate the probabilities at a given moment, but to understand how the probabilities of being in a given state evolve over time.</p>
+<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+computation with R
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In order to learn how to compute linear algebra in R, please read Mario De <span class="citation" data-cites="detoma2020">De Toma (<a href="references.html#ref-detoma2020" role="doc-biblioref">2020</a>)</span>.</p>
+<p>For this chapter the following R packages have been used:<br>
+</p>
+<ul>
+<li><p><em>tibble</em> by <span class="citation" data-cites="tibble">Müller and Wickham (<a href="references.html#ref-tibble" role="doc-biblioref">2023</a>)</span>, <em>dplyr</em> by <span class="citation" data-cites="dplyr">Wickham et al. (<a href="references.html#ref-dplyr" role="doc-biblioref">2023</a>)</span> and <em>tidyr</em> by <span class="citation" data-cites="tidyr">Wickham, Vaughan, and Girlich (<a href="references.html#ref-tidyr" role="doc-biblioref">2023</a>)</span> for data manipulation;</p></li>
+<li><p><em>diagram</em> by Karlin <span class="citation" data-cites="diagram2020">Soetaert (<a href="references.html#ref-diagram2020" role="doc-biblioref">2020</a>)</span> for graphing the state transition diagrams;</p></li>
+<li><p><em>kableExtra</em> by Hao <span class="citation" data-cites="kableExtra2021">Zhu (<a href="references.html#ref-kableExtra2021" role="doc-biblioref">2021</a>)</span> for visualizing tables;</p></li>
+<li><p><em>ggplot2</em> by Hadley <span class="citation" data-cites="wickham2016">Wickham (<a href="references.html#ref-wickham2016" role="doc-biblioref">2016</a>)</span> for plotting the time evolution of the probabilities.</p></li>
+</ul>
+</div>
+</div>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-detoma2020" class="csl-entry" role="doc-biblioentry">
+De Toma, Mario. 2020. <em>Computing Matrix Algebra</em>. Leanpub. <a href="https://leanpub.com/computingmatrixalgebra">https://leanpub.com/computingmatrixalgebra</a>.
+</div>
+<div id="ref-kulkarni2009" class="csl-entry" role="doc-biblioentry">
+Kulkarni, Vidyadhar G. 2009. <em>Modeling and Analysis of Stochastic Systems</em>. CRC Press - CHAPMAN &amp; HALL.
+</div>
+<div id="ref-tibble" class="csl-entry" role="doc-biblioentry">
+Müller, Kirill, and Hadley Wickham. 2023. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble">https://CRAN.R-project.org/package=tibble</a>.
+</div>
+<div id="ref-pinsky_karlin2011" class="csl-entry" role="doc-biblioentry">
+Pinsky, Mark, and Samuel Karlin. 2011. <em>An Intorduction to Stochastic Modeling</em>. Academic Press - Elsevier.
+</div>
+<div id="ref-diagram2020" class="csl-entry" role="doc-biblioentry">
+Soetaert, Karline. 2020. <em>Diagram: Functions for Visualising Simple Graphs (Networks), Plotting Flow Diagrams</em>. <a href="https://CRAN.R-project.org/package=diagram">https://CRAN.R-project.org/package=diagram</a>.
+</div>
+<div id="ref-tijms2003" class="csl-entry" role="doc-biblioentry">
+Tijms, Henk C. 2003. <em>A First Course in Stochastic Models</em>. John Wiley &amp; Sons Ltd.
+</div>
+<div id="ref-wickham2016" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-dplyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+</div>
+<div id="ref-tidyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Davis Vaughan, and Maximilian Girlich. 2023. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
+</div>
+<div id="ref-kableExtra2021" class="csl-entry" role="doc-biblioentry">
+Zhu, Hao. 2021. <em>kableExtra: Construct Complex Table with ’Kable’ and Pipe Syntax</em>. <a href="https://CRAN.R-project.org/package=kableExtra">https://CRAN.R-project.org/package=kableExtra</a>.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

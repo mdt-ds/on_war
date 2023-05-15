@@ -1,1 +1,610 @@
 # War Trends
+
+```{r}
+#| label: setup
+#| include: false
+
+library(readxl)
+library(janitor)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(ggplot2)
+library(scales)
+library(ggrepel)
+library(ggthemes)
+library(kableExtra)
+
+```
+> “*You can't say civilization don't advance... in every war they kill you in a new way.*”\
+Will Rogers, American actor
+
+The analysis of historical data on the war has already been recently attempted with conflicting results.
+
+According to Steven @pinker2012, violence has been in decline for long periods of time and we may be living in the most peaceful period of the existence of our species.
+Pinker explains this decline by indicating some historical processes that lead to progress in political, social and civil organization.
+A 2016 article by @cirillo_taleb2016, titled "*The Decline of Violent Conflicts: What Do The Data Really Say?*" , argued on the contrary that our current peaceful era is a statistical myth due to the variability inherent in the phenomenon called war.
+The 2016 article lists 5 major issues in quantitative historiography: fat tails, boundedness, reliability of historical data, definition of a war event and units for the analysis.
+
+The data sources used in the chapter highlight in particular problems of reliability and relative coherence of historical data also in relation to the different historiographical criteria for defining a war event.
+
+For these reasons, the chapter does not venture into a quantitative analysis and don't try to resolve the aforementioned conflicting positions, but simply proceed by exploring some public data concerning the history of warfare and military spending in the contemporary age.\
+
+This exploratory analysis of the data will confirm a few simple and trivial observations about the war:\
+
+- war is a constant in the history of humanity;\
+
+- war has always produced death and destruction;\
+
+- there is no country that does not think at least of its own defense, if not to prepare for a possible war.
+
+## wars in  history
+In this section three public datasets were used to conduct a simple exploratory data analysis about wars in history:\
+
+- list of wars from the Encyclopedia Britannica;\
+
+- Conflict Catalog Data made available by Dr. Peter Brecke;\
+
+- wikipedia list of wars.
+
+According to the [list of wars ](https://www.britannica.com/topic/list-of-wars-2031197) published by the Encyclopedia Britannica, it is possible to count 137 wars from the 12th century BC until the beginning of the twenty-first century.
+
+The list begins with the legendary conflict between the early Greeks and the Trojan people in western Anatolia celebrated in Homer's Iliad and Odyssey and concludes by reporting the uprising in Syria that began in 2011 and ended in 2020 with a ceasefire.
+
+While this list is not exhaustive, the distribution over history centuries of wars summarized in the graph below shows that the last three centuries of history are the most warlike.
+
+```{r}
+#| label: list of wars
+#| echo: false
+#| message: false
+#| warning: false
+
+readRDS("data/list_of_wars.RDS") %>% 
+  group_by(sequence, period) %>% 
+  summarise(wars = n()) %>%
+  mutate(period = as.factor(period)) %>% 
+  ggplot(aes(y = period, x = wars)) +
+  geom_col(fill = "firebrick") +
+  geom_text(aes(label = wars), nudge_x = -0.5, color = "darkgrey") +
+  xlab("") + ylab("") +
+  ggtitle("Wars in history", subtitle = "Encyclopedia Britannica") +
+  theme_clean()
+```
+
+In 20th century the list includes 37 wars: 
+```{r}
+#| label: list of 20th century wars
+#| echo: false
+#| message: false
+#| warning: false
+
+readRDS("data/list_of_wars.RDS") %>% 
+  filter(period == "1900–2000") %>% 
+  pull(war) %>% 
+  paste(collapse = ", ") %>% 
+  cat()
+```
+
+The 36 wars in 19th century are the following:
+```{r}
+#| label: list of 19th century wars
+#| echo: false
+#| message: false
+#| warning: false
+
+readRDS("data/list_of_wars.RDS") %>% 
+  filter(period == "1800–1900") %>% 
+  pull(war) %>% 
+  paste(collapse = ", ") %>% 
+  cat()
+```
+
+In 18th century the list of wars counts the following 21 wars:
+```{r}
+#| label: list of 18th century wars
+#| echo: false
+#| message: false
+#| warning: false
+
+readRDS("data/list_of_wars.RDS") %>% 
+  filter(period == "1800–1900") %>% 
+  pull(war) %>% 
+  paste(collapse = ", ") %>% 
+  cat()
+```
+
+
+Exploring the [Conflict Catalog Data](https://brecke.inta.gatech.edu/research/conflict/) made available by Peter Brecke of the Georgia Institute of Technology, it is possible to highlight also how much blood has been shed in history because of wars.
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+read_xlsx(path = "data/Conflict-Catalog-18-vars.xlsx") %>% 
+  clean_names() %>% 
+  select(name, total_fatalities, start_year, end_year, duration_y) %>% 
+  drop_na(total_fatalities) %>% 
+  drop_na(duration_y) %>% 
+  mutate(century = floor(start_year/100)*100) %>% 
+  group_by(century) %>%
+  summarise(century_fatalities = sum(total_fatalities)) %>%   
+  ggplot(aes(x=century, y = century_fatalities)) +
+  geom_col(fill = "firebrick") +
+  scale_y_continuous(labels = label_number(scale = 0.001)) +
+  xlab("") + ylab("") +
+  ggtitle("thousands of fatalities due to war form 1400", 
+          subtitle = "Dr. Brecke Conflict Catalog") +
+  theme_clean() +
+  theme(legend.position = "bottom") 
+
+```
+
+Considering these data, the twentieth century counts more than 100 million victims of war, more than five times the previous century.
+
+The most bloody conflicts according to the dataset are reported in the table below.
+```{r}
+#| label: conflict catalog fatalities
+#| echo: false
+#| message: false
+#| warning: false
+
+read_xlsx(path = "data/Conflict-Catalog-18-vars.xlsx") %>% 
+  clean_names() %>% 
+  select(name, total_fatalities, start_year, end_year) %>% 
+  drop_na(total_fatalities) %>% 
+  slice_max(order_by = total_fatalities, n = 10) %>% 
+  kable() %>% 
+  kable_paper() %>% 
+  kable_styling(bootstrap_options = "striped")
+
+```
+The world wars of the 20th century are the bloodiest conflicts in history according to the Conflict Data Catalog. The relative total casualties are due to the increase in weapon power and the number of countries involved. Dr. Peter Brecke counts six million Jewish victims as an event other than World War II. The massacre of the Jews, also called the Holocaust or Shoah, alone ranks fourth among the bloodiest wars.
+
+The Thirty Years' War, which ranks third, was one of the most destructive conflicts in European history, lasting from 1618 to 1648. Fought mainly in central Europe, it is estimated to have produced between 4.5 and 8 million of soldiers and civilians who died in battles, famine and disease. Some areas of what is now modern Germany experienced population declines of more than 50%.
+
+
+The longest conflicts in history from year 1400 according to the Conflict Catalog are reported in the following table.
+
+```{r}
+#| label: conflict catalog durations
+#| echo: false
+#| message: false
+#| warning: false
+
+read_xlsx(path = "data/Conflict-Catalog-18-vars.xlsx") %>% 
+  clean_names() %>% 
+  select(name, duration_y, start_year, end_year) %>% 
+  drop_na(duration_y) %>% 
+  slice_max(order_by = duration_y, n = 10) %>% 
+  rename(duration = duration_y) %>% 
+  kable() %>% 
+  kable_paper() %>% 
+  kable_styling(bootstrap_options = "striped")
+
+```
+
+The first longest war reported, called Dutch Revolt (Dutch: Nederlandse Opstand), lasted 43 years. It was an armed conflict in which Dutch Republic, England, and France fouught against Spanish Empire
+
+The second one, with a duration of 41 years, is the Siam revolution leading to the ban of french influence from the country and an internal political change.
+
+The third position relates to a long war, 40 years, waged by the kingdom of Dahomey in Africa against neighboring tribes to sell the defeated enemies as slaves to Western slave traders.
+
+In order to check the preceding data sources, the Wikipedia page [List of wars by death toll](https://en.wikipedia.org/wiki/List_of_wars_by_death_toll) has been scraped.
+
+This wiki page lists 23 ancient wars, 13 medieval wars, and 153 modern wars with over 25,000 casualties. 
+
+Plotting a similar graph to the one made for the Conflict Catalog Data for the wiki list of wars, it is clear that the data is different in terms of wars and of casualties reported.
+
+```{r}
+#| label: wiki wars
+#| echo: false
+#| message: false
+#| warning: false
+
+readRDS("data/wiki_wars.RDS") %>% 
+  mutate(century = if_else(era == "BC", -century, century)) %>% 
+  group_by(century) %>% 
+  summarise(fatalities = sum(death_toll)) %>% 
+  ggplot(aes(x=century, y = fatalities)) +
+  geom_col(fill = "firebrick") +
+  scale_y_continuous(labels = label_number(scale = 0.001)) +
+  xlab("") + ylab("") +
+  ggtitle("thousands of fatalities due to war", 
+          subtitle = "wiki list of wars") +
+  theme_clean() +
+  theme(legend.position = "bottom") 
+
+```
+
+According to wiki list of wars page in 19th century, the war death toll is around 180 millions fatalities. 
+
+The most bloody wars, according to Wikipedia and reported in the table below, does not match with the data about wars provided by Peter Brecke.
+
+```{r}
+#| label: wiki wars top bloody
+#| echo: false
+#| message: false
+#| warning: false
+
+readRDS("data/wiki_wars.RDS") %>% 
+  select(war, combatants, date, death_toll, deathrange) %>% 
+  drop_na(death_toll) %>% 
+  slice_max(order_by = death_toll, n = 10) %>% 
+  select(-death_toll) %>% 
+  kable() %>% 
+  kable_paper() %>% 
+  kable_styling(bootstrap_options = "striped") %>% 
+  column_spec(1, width = "10em") %>% 
+  column_spec(2, width = "12em") %>% 
+  column_spec(3, width = "4em") %>% 
+  column_spec(4, width = "7em")
+
+```
+
+The first war in this infamous ranking is still World War II but the death toll reported is doubled reaching 80 millions of fatalities.
+
+The second and third positions are covered by two wars that took place in China at different times.
+
+The Taiping Rebellion was a revolt lasting from 1850 to 1864 against the Qing dynasty in China supported by religious beliefs and motivated by harsh economic conditions. The Taiping forces were run as a cult-like group called the God Worshiping Society by self-proclaimed prophet Hong Xiuquan. The rebels held the city of Nanjing for a decade. However, the Taiping Rebellion ultimately failed and led to the deaths of over 20 million people.
+
+The War of the Three Kingdoms was a period of conflict between the Wei, Shu, and Wu kingdoms of ancient China that lasted nearly a hundred years starting in 184 after the fall of the Han empire. It was celebrated in the famous novel *Romance of the Three Kingdoms*.
+
+Also the war ranking by duration extracted from Wikipedia is different from the top ten coming from the Conflict Catalog data.
+
+```{r}
+#| label: wiki wars top duration
+#| echo: false
+#| message: false
+#| warning: false
+
+readRDS("data/wiki_wars.RDS") %>% 
+  select(war, combatants, date, duration) %>% 
+  drop_na(duration) %>% 
+  slice_max(order_by = duration, n = 10) %>% 
+  kable() %>% 
+  kable_paper() %>% 
+  kable_styling(bootstrap_options = "striped") %>% 
+  column_spec(1, width = "10em") %>% 
+  column_spec(2, width = "12em") %>% 
+  column_spec(3, width = "6em") %>% 
+  column_spec(4, width = "3em")
+
+```
+
+The Reconquista, the war to drive the Moors out of Spain and Portugal, lasted nearly eight centuries while four centuries of conflict pitted the Byzantine Empire against the Islamic Empire in a series of wars.
+
+The Warring States Period was an era in ancient Chinese history characterized by warfare that lasted two and a half centuries.
+
+Following the analysis of these three sources of data, recognizing their relative inconsistency, the first two simple conclusions relating to war are confirmed: war has always been present in the history of humanity regardless of the geographical region and has always produced a certain number of victims .
+
+## military expenditure
+
+In order to validate the claim that all countries in the world spend on their own defense, the [SIPRI military spending database](https://www.sipri.org/databases/milex/sources-and- methods) was explored.
+
+The Stockholm International Peace Research Institute, SIPRI, is an independent international institute dedicated to research on conflict, armaments, arms control and disarmament and maintains a data set called SIPRI-Milex-data containing information on military spending worldwide over the last years.
+
+Specifically, the analysis is focused on the following three datasets:\
+
+- *Regional totals*, reporting military spending by continental region in billion dollars from 1988 to 2022 at constant 2021 prices and exchange rates, except for the last figure which is reported at 2022 prices and exchange rates;
+
+- *Constant (2021) US$*, which reports military spending by country in million dollars from 1988 to 2022 at constant 2021 prices and exchange rates;
+
+- *Share of Govt. expenditure*, reporting military expenditure expressed as a percentage of public administration expenditure.
+
+Using the second and third dataset, *Constant (2021) US$* and *Share of Govt. expenditure*, the two histograms below show the distribution of national military spending in 2022 both as an absolute value in dollars (on a logarithmic scale) and as a share of total public spending.
+
+```{r}
+#| label: histograms of milex
+#| echo: false
+#| message: false
+#| warning: false
+#| layout-ncol: 2
+#| layout-nrow: 1
+
+avg_milex_dollars <- 
+  read_xlsx(path = "data/SIPRI-Milex-data-1949-2022.xlsx", 
+        sheet = "Constant (2021) US$", range = "A6:BY198") %>% 
+  clean_names() %>% 
+  select(-notes, -x2) %>% 
+  drop_na(starts_with("x")) %>% 
+  pivot_longer(cols = starts_with("x"), 
+               names_to = "year", values_to = "milex") %>% 
+  filter(milex != "...") %>% 
+  mutate(milex = as.numeric(milex)) %>% 
+  mutate(year = as.integer(str_sub(string = year, start = 2, end = 5))) %>%
+  filter(year == 2022) %>% 
+  drop_na(milex) %>% 
+  summarise(avg_milex_dollars = round(mean(milex),0)) %>% 
+  pull(avg_milex_dollars)
+
+read_xlsx(path = "data/SIPRI-Milex-data-1949-2022.xlsx", 
+        sheet = "Constant (2021) US$", range = "A6:BY198") %>% 
+  clean_names() %>% 
+  select(-notes, -x2) %>% 
+  drop_na(starts_with("x")) %>% 
+  pivot_longer(cols = starts_with("x"), 
+               names_to = "year", values_to = "milex") %>% 
+  filter(milex != "...") %>% 
+  mutate(milex = as.numeric(milex)) %>% 
+  mutate(year = as.integer(str_sub(string = year, start = 2, end = 5))) %>%
+  filter(year == 2022) %>% 
+  ggplot(aes(x = milex)) +
+  geom_histogram(fill = "darkseagreen", color = "indianred") +
+  scale_x_log10(breaks = c(10,10^2,10^3,10^4,10^5,10^6),
+                labels = c("10 ML$", "100 ML$", "1 BL$", 
+                           "10 BL$", "100 BL$", "1000 BL$")) +
+  xlab("") + ylab("") +
+  ggtitle("country military expenditure in 2022", 
+          subtitle = "US milion dollars") +
+  theme_clean()
+
+
+avg_milex_share <- read_xlsx(path = "data/SIPRI-Milex-data-1949-2022.xlsx", 
+        sheet = "Share of Govt. spending", range = "A8:AL200") %>% 
+  clean_names() %>% 
+  select(-notes, -reporting_year) %>% 
+  drop_na(starts_with("x")) %>% 
+  pivot_longer(cols = starts_with("x"), 
+               names_to = "year", values_to = "milex") %>% 
+  filter(milex != "...") %>% 
+  mutate(milex = as.numeric(milex)) %>% 
+  mutate(year = as.integer(str_sub(string = year, start = 2, end = 5))) %>%
+  filter(year == 2022) %>%
+  drop_na(milex) %>% 
+  summarise(avg_milex_share = round(mean(milex) * 100, 2)) %>% 
+  pull(avg_milex_share)
+
+
+
+read_xlsx(path = "data/SIPRI-Milex-data-1949-2022.xlsx", 
+        sheet = "Share of Govt. spending", range = "A8:AL200") %>% 
+  clean_names() %>% 
+  select(-notes, -reporting_year) %>% 
+  drop_na(starts_with("x")) %>% 
+  pivot_longer(cols = starts_with("x"), 
+               names_to = "year", values_to = "milex") %>% 
+  filter(milex != "...") %>% 
+  mutate(milex = as.numeric(milex)) %>% 
+  mutate(year = as.integer(str_sub(string = year, start = 2, end = 5))) %>%
+  filter(year == 2022) %>% 
+  ggplot(aes(x = milex)) +
+  geom_histogram(fill = "darkseagreen", color = "indianred") +
+  scale_x_continuous(labels = scales::label_percent()) +
+  xlab("") + ylab("") +
+  ggtitle("country military expenditure in 2022", 
+          subtitle = "share of GDP") +
+  theme_clean()
+
+```
+
+On average the military expenditure all over the world according to SIPRI has been of `r format(avg_milex_dollars, scientific = FALSE)` million dollars and in share of government spending of `r avg_milex_share`%.\
+But interesting things happen at extremes.\
+Observing the graph of the distribution of spending in dollars, it can be seen that the values of China, about 298 billion dollars, and the United States, about 811 billion dollars, seem real outliers, values outside the distribution valid for the other countries considering a,lso that the histogram is in log scale.
+At the other extreme, Costa Rica, Iceland and Panama has no military expenditure reported while Venezuela spent 4.7 million dollars.
+
+Considering instead the military expenditures as a ratio of the overall government expenditure, the values that seems not in the same distribution of other countries are related to:
+Somalia (20.37%), Qatar (23.84%), Saudi Arabia (27.79%) and Belarus (32.12%).
+
+At the lower extreme, in 2022 only Haiti, Honduras, Mauritius, Moldova spent less than 1% of the overall government spending.
+
+Exploring the *regional totals* dataset, it is possible to highlight that in last 20 years the military expenditure has grown all over the world.
+```{r}
+#| label: arms race world
+#| echo: false
+#| message: false
+#| warning: false
+#| layout-ncol: 2
+#| layout-nrow: 1
+
+read_xlsx(path = "data/SIPRI-Milex-data-1949-2022.xlsx", 
+        sheet = "Regional totals", range = "A14:AJ33") %>% 
+  clean_names() %>% 
+  drop_na(starts_with("x")) %>%
+  select(-x1991_0) %>% 
+  filter(region == "World") %>% 
+  pivot_longer(cols = starts_with("x"), 
+               names_to = "year", values_to = "milex") %>% 
+  filter(milex != "...") %>% 
+  mutate(milex = as.numeric(milex)) %>% 
+  mutate(year = as.integer(str_sub(string = year, start = 2, end = 5))) %>%
+  filter(year > 1999) %>% 
+  ggplot(aes(x=year, y = milex)) +
+  geom_line(aes(color = region), linewidth = 1.5) +
+  scale_y_continuous(labels = dollar) +
+  xlab("") + ylab("") +
+  ggtitle("world military expenditure in last 20 years", 
+          subtitle = "US bilion dollars") +
+  theme_clean() +
+  theme(legend.position = "bottom") 
+
+read_xlsx(path = "data/SIPRI-Milex-data-1949-2022.xlsx", 
+        sheet = "Regional totals", range = "A14:AJ33") %>% 
+  clean_names() %>% 
+  drop_na(starts_with("x")) %>%
+  select(-x1991_0) %>% 
+  filter(region %in% 
+           c("Africa", "Americas", 
+             "Asia & Oceania", "Europe", "Middle East")) %>% 
+  pivot_longer(cols = starts_with("x"), 
+               names_to = "year", values_to = "milex") %>% 
+  filter(milex != "...") %>% 
+  mutate(milex = as.numeric(milex)) %>% 
+  mutate(year = as.integer(str_sub(string = year, start = 2, end = 5))) %>%
+  filter(year > 1999) %>% 
+  ggplot(aes(x=year, y = milex)) +
+  geom_line(aes(color = region), linewidth = 1.5) +
+  scale_y_continuous(labels = dollar) +
+  xlab("") + ylab("") +
+  ggtitle("world military expenditure by region in last 20 years", 
+          subtitle = "US bilion dollars") +
+  theme_clean() +
+  theme(legend.position = "bottom") 
+```
+
+In just over twenty years, global military spending has grown from about $1,200$ billion dollars to about $2,182 billion dollars. Impressive isn't it?\
+The region that has spent the most is America led by the United States: its military spending trend stalled in the years around 2010 to decrease slightly until 2016 and then recover from 2017 to 2022. Asia shows a clear constant growth trend of military spending. Europe has maintained consistently high military spending, which appears to be growing fastest in recent years. After an initial period of growth, since around 2015 the Middle East appears to have stabilized its military spending. Africa cannot economically afford a high expense. 
+
+In order to detect not only for the presence of a growing trend but also for a pattern of arms race, two geopolitical scenarios were analyzed: the major world powers and the Middle East.
+
+The arms race pattern is defined as the competitive acquisition of military capabilities between two or more nations although in a broad sense it can be understood as a growing trend.
+
+The first analysis concerns some countries among the world powers: China, India, Russia and the United States of America.
+For each country, military spending from year 2000 to 2022 was traced over time both in absolute value, using *Constant (2021) US$* datase, and as a share of government spending using the data from *Share of Govt. expenditure* dataset.
+
+```{r}
+#| label: arms race big powers
+#| echo: false
+#| message: false
+#| warning: false
+#| layout-ncol: 2
+#| layout-nrow: 1
+
+read_xlsx(path = "data/SIPRI-Milex-data-1949-2022.xlsx", 
+        sheet = "Constant (2021) US$", range = "A6:BY198") %>% 
+  clean_names() %>% 
+  select(-notes, -x2) %>% 
+  drop_na(starts_with("x")) %>% 
+  pivot_longer(cols = starts_with("x"), 
+               names_to = "year", values_to = "milex") %>% 
+  filter(milex != "...") %>% 
+  mutate(milex = as.numeric(milex)/1000) %>% 
+  mutate(year = as.integer(str_sub(string = year, start = 2, end = 5))) %>%
+  filter(country %in% 
+           c("China", "Russia", "India", "United States of America")) %>% 
+  filter(year > 1999) %>% 
+  ggplot(aes(x=year, y = milex)) +
+  geom_line(aes(color = country), linewidth = 1.5) +
+  scale_y_continuous(labels = dollar) +
+  xlab("") + ylab("") +
+  ggtitle("world powers military expenditure in last 20 years", 
+          subtitle = "US bilion dollars") +
+  theme_clean() +
+  theme(legend.position = "bottom") 
+
+read_xlsx(path = "data/SIPRI-Milex-data-1949-2022.xlsx", 
+        sheet = "Share of Govt. spending", range = "A8:AL200") %>% 
+  clean_names() %>% 
+  select(-notes, -reporting_year) %>% 
+  drop_na(starts_with("x")) %>% 
+  pivot_longer(cols = starts_with("x"), 
+               names_to = "year", values_to = "milex") %>% 
+  filter(milex != "...") %>% 
+  mutate(milex = as.numeric(milex)) %>% 
+  mutate(year = as.integer(str_sub(string = year, start = 2, end = 5))) %>%
+  filter(country %in% 
+           c("China", "Russia", "India", "United States of America")) %>% 
+  filter(year > 1999) %>% 
+  ggplot(aes(x=year, y = milex)) +
+  geom_line(aes(color = country), linewidth = 1.5) +
+  scale_y_continuous(labels = percent) +
+  xlab("") + ylab("") +
+  ggtitle("world powers military expenditure in last 20 years", 
+          subtitle = "share of govt. spending") +
+  theme_clean() +
+  theme(legend.position = "bottom") 
+```
+
+The United States spends an incomparable amount of resources on armaments compared to other world powers. As reported in the SIPRI database, US maximum spending was approximately 917 billion dollars in 2010 compared to China's 298 in 2022, Russia's 77 in 2016 and India's 81 in 2022.
+The US government's considerable spending on arms does not appear to be a direct reaction to spending by other nations. Instead, it could be a phenomenon due both to the events linked to the consequences of 11 September 2001 and to the weight and importance of the US military apparatus.
+
+In the SIPRI data on military spending in relation to total government spending, data from the United States of America is missing, so no clear pattern of arms race can be detected. China's military spending effort has been declining for the past two decades, India's appears to be declining slightly while Russia's effort peaks around 2016. In 2022 Russia spent 10.35% of its global government spending, China 4.79% and India 8.26%.
+
+The second analysis concerns some Middle Eastern countries with different political and economic characteristics, namely Saudi Arabia, Egypt, Iran, Israel and Lebanon.
+As for the world powers, the graphs of the trend of military spending from year 2000 to 2022 are presented both in billions of dollars and as a share of overall government spending.
+
+```{r}
+#| label: arms race middle east
+#| echo: false
+#| message: false
+#| warning: false
+#| layout-ncol: 2
+#| layout-nrow: 1
+
+read_xlsx(path = "data/SIPRI-Milex-data-1949-2022.xlsx", 
+        sheet = "Constant (2021) US$", range = "A6:BY198") %>% 
+  clean_names() %>% 
+  select(-notes, -x2) %>% 
+  drop_na(starts_with("x")) %>% 
+  pivot_longer(cols = starts_with("x"), 
+               names_to = "year", values_to = "milex") %>% 
+  filter(milex != "...") %>% 
+  mutate(milex = as.numeric(milex)/1000) %>% 
+  mutate(year = as.integer(str_sub(string = year, start = 2, end = 5))) %>%
+  filter(country %in% 
+           c("Israel", "Egypt", "Lebanon", "Iran", "Saudi Arabia")) %>% 
+  filter(year > 1999) %>% 
+  ggplot(aes(x=year, y = milex)) +
+  geom_line(aes(color = country), linewidth = 1.5) +
+  scale_y_continuous(labels = dollar) +
+  xlab("") + ylab("") +
+  ggtitle("midlle east military expenditure in last 20 years", 
+          subtitle = "US bilions dollars") +
+  theme_clean() +
+  theme(legend.position = "bottom") 
+
+read_xlsx(path = "data/SIPRI-Milex-data-1949-2022.xlsx", 
+        sheet = "Share of Govt. spending", range = "A8:AL200") %>% 
+  clean_names() %>% 
+  select(-notes, -reporting_year) %>%  
+  drop_na(starts_with("x")) %>% 
+  pivot_longer(cols = starts_with("x"), 
+               names_to = "year", values_to = "milex") %>% 
+  filter(milex != "...") %>% 
+  mutate(milex = as.numeric(milex)) %>% 
+  mutate(year = as.integer(str_sub(string = year, start = 2, end = 5))) %>%
+  filter(country %in% 
+           c("Israel", "Egypt", "Lebanon", "Iran", "Saudi Arabia")) %>% 
+  filter(year > 1999) %>% 
+  ggplot(aes(x=year, y = milex)) +
+  geom_line(aes(color = country), linewidth = 1.5) +
+  scale_y_continuous(labels = percent) +
+  xlab("") + ylab("") +
+  ggtitle("middle east military expenditure in last 20 years", 
+          subtitle = "share of govt. spending") +
+  theme_clean() +
+  theme(legend.position = "bottom") 
+```
+
+Over the last twenty years, Saudi Arabia has spent between 22 and 32% of its global spending on armaments, reaching an expenditure of even more than 94 billion dollars in 2015. The military spending high ratio in Saudi Arabia has been possible since the government is a kingdom without relevant economical and political constraint.\
+Israel, which is continually threatened by neighboring countries, has in the last twenty years limited its military expenditure to within 15% of global spending, spending slightly more than 23 billion dollars in 2022.
+Egypt has steadily decreased its military spending effort starting from about 10% till slightly more than 4% of its overall spending while the spending in dollars remains almost constant reaching 5 billion dollars in 2022.\
+Iran military spending during last years has from 13 to 17% in 2022. In absolute value last year Iran spent 5,639.7 million dollars.
+Lebanon growing trend in military expenditure has been cut off in 2019 due to its economic crisis.\
+
+## key takeways
+As the first principle of data science states, data without context is information, not knowledge. Likewise, facts are not history unless they are organized in their context and over time in a way that can be explained.
+
+In this sense, the synthetic analysis carried out on historical data is very lacking, but nevertheless allows for some general considerations.
+
+Given the differences between the datasets of wars in history analyzed, it is difficult to draw specific conclusions about any historical trends. But it can certainly be said that the history of every region of the world can tell how much destruction and death wars have caused.
+The twentieth century certainly seems to be the bloodiest among centuries probably for two reasons: the availability of more accurate historical data and the unthinkable growth in the power of weapons.
+
+The analysis of the expenditure of modern states on armaments indicates that the possibility of getting involved in war is perceived as real. The amount of arms spending does not appear to follow an arms race pattern in the strict sense in the proposed scenarios, probably due to numerous domestic economic and political constraints.
+But the global growth in military spending over the past two decades is astounding.
+
+::: {.callout-caution collapse="true"}  
+## computation with R
+
+In order to learn how to explore data with R see @R4DS.
+
+For this chapter the following R packages have been used:\
+
+- *rvest* by @rvest for scraping both wikipedia and Encyclopedia Britanica list of wars;
+
+- *purrr* by @purrr for applying functions to data;
+
+- *readxl* by @readxl for loading into R the Conflict Catalog Data in excel format;
+
+- *janitor* by @janitor for data cleaning;
+
+- *dplyr* by @dplyr and *tidyr* by @tidyr for data manipulation;
+
+- *stringr* by @stringr for processing text data;
+
+- *kableExtra* by Hao @kableExtra2021 for visualizing tables;
+
+- *ggplot2* by @wickham2016, *ggthemes* by @ggthemes, *ggrepel* by @ggrepel and *scales* by @scales for infographics.
+
+:::
